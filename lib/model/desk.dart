@@ -1,6 +1,11 @@
+import 'package:json_annotation/json_annotation.dart';
+
 import 'position.dart';
 import 'student.dart';
 
+part 'desk.g.dart';
+
+@JsonSerializable()
 class Desk {
   final String id;
   final Position position;
@@ -33,4 +38,8 @@ class Desk {
   Student? getPreviousStudent(Map<String, Student> studentMap) {
     return previousStudentId != null ? studentMap[previousStudentId!] : null;
   }
+
+  // JSON serialization
+  factory Desk.fromJson(Map<String, dynamic> json) => _$DeskFromJson(json);
+  Map<String, dynamic> toJson() => _$DeskToJson(this);
 }
