@@ -1,0 +1,36 @@
+import 'position.dart';
+import 'student.dart';
+
+class Desk {
+  final String id;
+  final Position position;
+  String? assignedStudentId;
+  String? previousStudentId;
+
+  Desk({
+    required this.id,
+    required this.position,
+    this.assignedStudentId,
+    this.previousStudentId,
+  });
+
+  bool get isAvailable => assignedStudentId == null;
+
+  void assignStudent(Student student) {
+    previousStudentId = assignedStudentId;
+    assignedStudentId = student.id;
+  }
+
+  void clearAssignment() {
+    previousStudentId = assignedStudentId;
+    assignedStudentId = null;
+  }
+
+  Student? getAssignedStudent(Map<String, Student> studentMap) {
+    return assignedStudentId != null ? studentMap[assignedStudentId!] : null;
+  }
+
+  Student? getPreviousStudent(Map<String, Student> studentMap) {
+    return previousStudentId != null ? studentMap[previousStudentId!] : null;
+  }
+}
