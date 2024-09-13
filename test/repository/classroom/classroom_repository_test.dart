@@ -17,7 +17,7 @@ import 'classroom_repository_test.mocks.dart';
 
 @GenerateMocks([JsonWriteRead])
 void main() {
-  group('ClassroomRepository - loadClassroom', ()
+  group('ClassroomRepository - all functions.', ()
   {
     late ClassroomRepository classroomRepository;
     late MockJsonWriteRead mockJsonWriteRead;
@@ -40,8 +40,7 @@ void main() {
       expect(classroom, isNull);
     });
 
-    test(
-        'Returns the correct classroom when given the classroom ID.', () async {
+    test('Returns the correct classroom when given the classroom ID.', () async {
       final file = File('test.json');
       when(mockJsonWriteRead.getFile(any)).thenAnswer((_) async => file);
       when(mockJsonWriteRead.readDataFromFile(file)).thenAnswer((_) async =>
@@ -113,8 +112,7 @@ void main() {
           SortingOption.avoidSamePlaceRepetition), true);
     });
 
-    test(
-        'Returns null when loading in all the classrooms because non exist.', () async {
+    test('Returns null when loading in all the classrooms because non exist.', () async {
       final file = File('test.json');
       when(mockJsonWriteRead.getFile(any))
           .thenAnswer((_) async => file);
@@ -125,8 +123,7 @@ void main() {
       expect(classrooms, isEmpty);
     });
 
-    test(
-        'Returns a complete list of classrooms that were present in the mocked file.', () async {
+    test('Returns a complete list of classrooms that were present in the mocked file.', () async {
       final file = File('test.json');
 
       when(mockJsonWriteRead.getFile(any))
