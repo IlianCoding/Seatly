@@ -3,10 +3,11 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:seatly/model/configuration/layoutType/layout_type.dart';
 import 'package:seatly/model/configuration/sortingOptions/different_sorting_options.dart';
 import 'package:seatly/model/desk.dart';
+import 'package:seatly/model/student.dart';
 
 part 'classroom.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Classroom {
   final String id;
   final String name;
@@ -42,7 +43,6 @@ class Classroom {
     studentIds.clear();
   }
 
-  //TODO: Change this so it returns a list of students from the .json file
   List<Student> getStudents(List<Student> studentList) {
     return studentIds
         .map((studentId) => studentList.firstWhere(
@@ -60,7 +60,6 @@ class Classroom {
         .toList();
   }
 
-  // JSON serialization
   factory Classroom.fromJson(Map<String, dynamic> json) => _$ClassroomFromJson(json);
   Map<String, dynamic> toJson() => _$ClassroomToJson(this);
 }

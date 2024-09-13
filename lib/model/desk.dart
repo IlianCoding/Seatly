@@ -5,7 +5,7 @@ import 'package:seatly/model/student.dart';
 
 part 'desk.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Desk {
   final String id;
   final Position position;
@@ -39,7 +39,6 @@ class Desk {
     return previousStudentId != null ? studentMap[previousStudentId!] : null;
   }
 
-  // JSON serialization
   factory Desk.fromJson(Map<String, dynamic> json) => _$DeskFromJson(json);
   Map<String, dynamic> toJson() => _$DeskToJson(this);
 }
