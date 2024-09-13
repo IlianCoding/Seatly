@@ -1,8 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:seatly/data/repository/classroom/i_classroom_repository.dart';
-import '../../../model/classroom.dart';
+import 'package:seatly/repository/classroom/i_classroom_repository.dart';
+import 'package:seatly/model/classroom.dart';
 
 @Singleton(as: IClassroomRepository)
 class ClassroomRepository implements IClassroomRepository{
