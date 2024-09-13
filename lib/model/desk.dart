@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'position.dart';
-import 'student.dart';
+import 'package:seatly/model/position.dart';
+import 'package:seatly/model/student.dart';
 
 part 'desk.g.dart';
 

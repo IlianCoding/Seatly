@@ -2,11 +2,11 @@ import 'package:collection/collection.dart';
 import 'package:injectable/injectable.dart';
 import 'package:seatly/core/utils/json_write_read.dart';
 
-import 'package:seatly/data/repository/classroom/i_classroom_repository.dart';
 import 'package:seatly/model/classroom.dart';
 import 'package:seatly/model/configuration/layoutType/layout_type.dart';
 import 'package:seatly/model/desk.dart';
 import 'package:seatly/model/position.dart';
+import 'package:seatly/repository/classroom/i_classroom_repository.dart';
 
 @Singleton(as: IClassroomRepository)
 class ClassroomRepository implements IClassroomRepository {
