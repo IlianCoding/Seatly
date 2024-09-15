@@ -441,5 +441,199 @@ void main() {
       verify(mockJsonWriteRead.readDataFromFile(file)).called(1);
       verify(mockJsonWriteRead.writeDataToFile(file, updatedData)).called(1);
     });
+
+    test('Updates the classroom successfully.', () async {
+      final file = File('test.json');
+      final initialData = {
+        'classrooms': [
+          {
+            'id': 'classroom1',
+            'name': 'Classroom 1',
+            'layoutType': 'rowByRow',
+            'desks': [
+              {
+                'id': 'seat1',
+                'position': {'row': 1, 'column': 1}
+              },
+              {
+                'id': 'seat2',
+                'position': {'row': 1, 'column': 2}
+              }
+            ],
+            'studentIds': ['student1', 'student2'],
+            'sortingOptions': {
+              'selectedOptions': [
+                'avoidSameNationality',
+                'avoidAdjacentRepetition'
+              ]
+            }
+          },
+          {
+            'id': 'classroom2',
+            'name': 'Classroom 2',
+            'layoutType': 'specialUShape',
+            'desks': [
+              {
+                'id': 'desk1',
+                'position': {'row': 1, 'column': 1}
+              },
+              {
+                'id': 'desk2',
+                'position': {'row': 1, 'column': 2}
+              }
+            ],
+            'studentIds': ['student3', 'student4'],
+            'sortingOptions': {
+              'selectedOptions': [
+                'avoidSameNationality',
+                'avoidAdjacentRepetition',
+                'avoidSamePlaceRepetition'
+              ]
+            }
+          }
+        ]
+      };
+      final updatedData = {
+        'classrooms': [
+          {
+            'id': 'classroom1',
+            'name': 'Classroom 1',
+            'layoutType': 'uShape',
+            'desks': [
+              {
+                'id': 'seat1',
+                'position': {'row': 2, 'column': 3},
+                'assignedStudentId': null,
+                'previousStudentId': null
+              },
+              {
+                'id': 'seat2',
+                'position': {'row': 3, 'column': 2},
+                'assignedStudentId': null,
+                'previousStudentId': null
+              }
+            ],
+            'studentIds': ['student1', 'student2', 'student3'],
+            'sortingOptions': {
+              'selectedOptions': [
+                'avoidSameNationality',
+                'avoidAdjacentRepetition'
+              ]
+            }
+          },
+          {
+            'id': 'classroom2',
+            'name': 'Classroom 2',
+            'layoutType': 'specialUShape',
+            'desks': [
+              {
+                'id': 'desk1',
+                'position': {'row': 1, 'column': 1},
+                'assignedStudentId': null,
+                'previousStudentId': null
+              },
+              {
+                'id': 'desk2',
+                'position': {'row': 1, 'column': 2},
+                'assignedStudentId': null,
+                'previousStudentId': null
+              }
+            ],
+            'studentIds': ['student3', 'student4'],
+            'sortingOptions': {
+              'selectedOptions': [
+                'avoidSameNationality',
+                'avoidAdjacentRepetition',
+                'avoidSamePlaceRepetition'
+              ]
+            }
+          }
+        ]
+      };
+
+      when(mockJsonWriteRead.getFile(any)).thenAnswer((_) async => file);
+      when(mockJsonWriteRead.readDataFromFile(file))
+          .thenAnswer((_) async => initialData);
+      when(mockJsonWriteRead.writeDataToFile(any, any))
+          .thenAnswer((_) async => {});
+
+      final classroom = Classroom(
+          id: 'classroom1',
+          name: 'Classroom 1',
+          layoutType: LayoutType.uShape,
+          desks: [
+            Desk(id: 'seat1', position: Position(row: 2, column: 3)),
+            Desk(id: 'seat2', position: Position(row: 3, column: 2))
+          ],
+          studentIds: ['student1', 'student2', 'student3'],
+          sortingOptions: DifferentSortingOptions(selectedOptions: [
+            SortingOption.avoidSameNationality,
+            SortingOption.avoidAdjacentRepetition
+          ]));
+      await classroomRepository.updateClassroom(classroom);
+
+      verify(mockJsonWriteRead.getFile('classroomSeperator.json')).called(1);
+      verify(mockJsonWriteRead.readDataFromFile(file)).called(1);
+      verify(mockJsonWriteRead.writeDataToFile(file, updatedData)).called(1);
+    });
+
+    test('Throws an exception when the classroom is not found.', () async {
+      final file = File('test.json');
+      final initialData = {
+        'classrooms': [
+          {
+            'id': 'classroom1',
+            'name': 'Classroom 1',
+            'layoutType': 'rowByRow',
+            'desks': [
+              {
+                'id': 'seat1',
+                'position': {'row': 1, 'column': 1},
+                'assignedStudentId': null,
+                'previousStudentId': null
+              },
+              {
+                'id': 'seat2',
+                'position': {'row': 1, 'column': 2},
+                'assignedStudentId': null,
+                'previousStudentId': null
+              }
+            ],
+            'studentIds': ['student1', 'student2'],
+            'sortingOptions': {
+              'selectedOptions': [
+                'avoidSameNationality',
+                'avoidAdjacentRepetition'
+              ]
+            }
+          }
+        ]
+      };
+
+      when(mockJsonWriteRead.getFile(any)).thenAnswer((_) async => file);
+      when(mockJsonWriteRead.readDataFromFile(file))
+          .thenAnswer((_) async => initialData);
+      when(mockJsonWriteRead.writeDataToFile(any, any))
+          .thenAnswer((_) async => {});
+
+      final classroom = Classroom(
+          id: 'classroom2',
+          name: 'Classroom 2',
+          layoutType: LayoutType.uShape,
+          desks: [
+            Desk(id: 'seat1', position: Position(row: 2, column: 3)),
+            Desk(id: 'seat2', position: Position(row: 3, column: 2))
+          ],
+          studentIds: ['student1', 'student2', 'student3'],
+          sortingOptions: DifferentSortingOptions(selectedOptions: [
+            SortingOption.avoidSameNationality,
+            SortingOption.avoidAdjacentRepetition
+          ]));
+
+      expect(
+          () async => await classroomRepository.updateClassroom(classroom),
+          throwsA(isA<Exception>().having((e) => e.toString(), 'description',
+              'Exception: Classroom with id ${classroom.id} not found')));
+    });
   });
 }
