@@ -22,7 +22,7 @@ jobs:
         - run: flutter build apk --split-per-abi
         - run: flutter build ios --no-codesign
         - name: Upload build artifacts
-          uses: actions/upload-artifact@v2
+          uses: actions/upload-artifact@v3
           with:
             name: build-artifacts
             path: build/
@@ -44,7 +44,7 @@ jobs:
         - run: flutter pub run build_runner build --delete-conflicting-outputs
         - run: flutter test --coverage
         - name: Upload coverage
-          uses: actions/upload-artifact@v2
+          uses: actions/upload-artifact@v3
           with:
             name: coverage-report
             path: coverage/lcov.info
