@@ -28,11 +28,16 @@ jobs:
         - run: flutter pub get
         - run: flutter pub run build_runner build --delete-conflicting-outputs
         - run: flutter test --coverage
-        - name: Upload coverage
+        - name: Install lcov
+          run: sudo apt-get install lcov
+        - name: Generate HTML report
+          run: |
+            genhtml coverage/lcov.info --output-directory coverage/html
+        - name: Upload HTML report
           uses: actions/upload-artifact@v3
           with:
-            name: coverage-report
-            path: coverage/lcov.info
+            name: html-report
+            path: coverage/html
 
 # build-android:
 #   runs-on: ubuntu-latest
