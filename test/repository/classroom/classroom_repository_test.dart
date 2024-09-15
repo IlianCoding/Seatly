@@ -551,7 +551,8 @@ void main() {
         ]
       };
 
-      when(mockJsonWriteRead.getFile(any)).thenAnswer((_) async => file);
+      when(mockJsonWriteRead.getFile(any))
+          .thenAnswer((_) async => file);
       when(mockJsonWriteRead.readDataFromFile(file))
           .thenAnswer((_) async => initialData);
       when(mockJsonWriteRead.writeDataToFile(any, any))
@@ -610,7 +611,8 @@ void main() {
         ]
       };
 
-      when(mockJsonWriteRead.getFile(any)).thenAnswer((_) async => file);
+      when(mockJsonWriteRead.getFile(any))
+          .thenAnswer((_) async => file);
       when(mockJsonWriteRead.readDataFromFile(file))
           .thenAnswer((_) async => initialData);
       when(mockJsonWriteRead.writeDataToFile(any, any))
