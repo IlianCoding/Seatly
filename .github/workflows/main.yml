@@ -20,7 +20,7 @@ jobs:
         - run: flutter pub get
         - run: flutter pub run build_runner build --delete-conflicting-outputs
         - run: flutter build apk --split-per-abi
-        - run: flutter build ios --no-codesign
+        - run: flutter build ios
         - name: Upload build artifacts
           uses: actions/upload-artifact@v3
           with:
@@ -65,4 +65,4 @@ jobs:
         - run: flutter pub get
         - run: flutter pub run build_runner build --delete-conflicting-outputs
         - run: flutter build apk --split-per-abi
-        - run: flutter build ios --no-codesign
+        - run: flutter build ios
