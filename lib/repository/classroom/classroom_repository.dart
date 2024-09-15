@@ -65,8 +65,13 @@ class ClassroomRepository implements IClassroomRepository {
     final data = await _jsonWriteRead.readDataFromFile(file);
     final classrooms = _parseClassrooms(data);
 
-    classrooms.removeWhere((classroom) => classroom.id == id);
-    await _jsonWriteRead.writeDataToFile(file, {'classrooms': classrooms.map((e) => e.toJson()).toList()});
+    final index = classrooms.indexWhere((c) => c.id == id);
+    if(index >= 0){
+      classrooms.removeAt(index);
+      await _jsonWriteRead.writeDataToFile(file, {'classrooms': classrooms.map((e) => e.toJson()).toList()});
+    } else {
+      throw Exception('Classroom with id $id not found');
+    }
   }
 
   @override
