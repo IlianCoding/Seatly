@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:seatly/model/configuration/sortingOptions/sorting_option.dart';
+import 'package:seatly/domain/configuration/sortingOptions/sorting_option.dart';
 
 part 'different_sorting_options.g.dart';
 

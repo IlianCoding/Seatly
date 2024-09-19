@@ -6,7 +6,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'package:seatly/core/utils/json_write_read.dart';
-import 'package:seatly/model/student.dart';
+import 'package:seatly/domain/student.dart';
 import 'package:seatly/repository/student/student_repository.dart';
 
 import 'student_repository_test.mocks.dart';
@@ -29,7 +29,7 @@ void main() {
       when(mockJsonWriteRead.readDataFromFile(file))
           .thenAnswer((_) async => {'students': []});
 
-      final student = await studentRepository.loadStudent('student1');
+      final student = await studentRepository.readStudent('student1');
       expect(student, isNull);
     });
 
@@ -60,7 +60,7 @@ void main() {
             ]
           });
 
-      final student = await studentRepository.loadStudent('student1');
+      final student = await studentRepository.readStudent('student1');
       expect(student, isNotNull);
       expect(student!.id, 'student1');
       expect(student.firstName, 'Ilian');
@@ -77,7 +77,7 @@ void main() {
       when(mockJsonWriteRead.readDataFromFile(file))
           .thenAnswer((_) async => {'students': []});
 
-      final students = await studentRepository.loadAllStudents();
+      final students = await studentRepository.readAllStudents();
       expect(students, isEmpty);
     });
 
@@ -108,7 +108,7 @@ void main() {
             ]
           });
 
-      final students = await studentRepository.loadAllStudents();
+      final students = await studentRepository.readAllStudents();
 
       expect(students.length, 2);
       expect(students[0].id, 'student1');
@@ -134,7 +134,7 @@ void main() {
       when(mockJsonWriteRead.writeDataToFile(file, any))
           .thenAnswer((_) async => {});
 
-      await studentRepository.saveStudent(student);
+      await studentRepository.createStudent(student);
       verify(mockJsonWriteRead.getFile('classroomSeperator.json')).called(1);
       verify(mockJsonWriteRead.readDataFromFile(file)).called(1);
       verify(mockJsonWriteRead.writeDataToFile(file, {
@@ -172,7 +172,7 @@ void main() {
       when(mockJsonWriteRead.writeDataToFile(any, any))
           .thenAnswer((_) async => {});
 
-      await studentRepository.saveAllStudents(students);
+      await studentRepository.createAllStudents(students);
       verify(mockJsonWriteRead.getFile('classroomSeperator.json')).called(1);
       verify(mockJsonWriteRead.writeDataToFile(file, {
         'students': students.map((e) => e.toJson()).toList()

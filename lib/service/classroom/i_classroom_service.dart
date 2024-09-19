@@ -1,11 +1,11 @@
-import 'package:seatly/model/classroom.dart';
-import 'package:seatly/model/student.dart';
+import 'package:seatly/domain/classroom.dart';
+import 'package:seatly/ui/model/classroomdetail_model.dart';
 
 abstract class IClassroomService {
   Future<List<Classroom>> getAllClassrooms();
-  Future<MapEntry<Classroom?, List<Student>>> getClassroomWithStudents(String classroomId);
+  Future<ClassroomDetailsModel> getClassroomWithStudents(String classroomId);
 
-  Future<void> createClassroom(Classroom classroom);
+  Future<void> addClassroom(Classroom classroom);
   Future<void> changeClassroom(Classroom classroom);
   Future<void> removeClassroom(String classroomId);
 

@@ -1,10 +1,10 @@
-import 'package:seatly/model/student.dart';
+import 'package:seatly/domain/student.dart';
 
 abstract class IStudentService {
-  Future<Student?> getStudentById(int id);
+  Future<Student?> getStudentById(String id);
   Future<List<Student>> getAllStudents();
 
-  Future<void> createStudent(Student student);
+  Future<void> addStudent(Student student);
   Future<void> changeStudent(Student student);
-  Future<void> removeStudent(int id);
+  Future<void> removeStudent(String id);
 }

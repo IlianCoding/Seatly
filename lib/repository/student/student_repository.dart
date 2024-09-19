@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import 'package:seatly/core/utils/json_write_read.dart';
 import 'package:seatly/repository/student/i_student_repository.dart';
-import 'package:seatly/model/student.dart';
+import 'package:seatly/domain/student.dart';
 
 @Singleton(as: IStudentRepository)
 class StudentRepository implements IStudentRepository {
@@ -15,7 +15,7 @@ class StudentRepository implements IStudentRepository {
   }) : _jsonWriteRead = jsonWriteRead;
 
   @override
-  Future<Student?> loadStudent(String id) async {
+  Future<Student?> readStudent(String id) async {
     final file = await _jsonWriteRead.getFile(fileName);
     final data = await _jsonWriteRead.readDataFromFile(file);
     final students = _parseStudents(data);
@@ -24,7 +24,7 @@ class StudentRepository implements IStudentRepository {
   }
 
   @override
-  Future<List<Student>> loadAllStudents() async {
+  Future<List<Student>> readAllStudents() async {
     final file = await _jsonWriteRead.getFile(fileName);
     final data = await _jsonWriteRead.readDataFromFile(file);
 
@@ -32,7 +32,7 @@ class StudentRepository implements IStudentRepository {
   }
 
   @override
-  Future<void> saveStudent(Student student) async {
+  Future<void> createStudent(Student student) async {
     final file = await _jsonWriteRead.getFile(fileName);
     final data = await _jsonWriteRead.readDataFromFile(file);
     final students = _parseStudents(data);
@@ -72,7 +72,7 @@ class StudentRepository implements IStudentRepository {
   }
 
   @override
-  Future<void> saveAllStudents(List<Student> students) async {
+  Future<void> createAllStudents(List<Student> students) async {
     final file = await _jsonWriteRead.getFile(fileName);
     await _jsonWriteRead.writeDataToFile(file, {'students': students.map((e) => e.toJson()).toList()});
   }
@@ -100,7 +100,7 @@ class StudentRepository implements IStudentRepository {
       Student(id: 'student18', firstName: 'Oscar', lastName: 'Nielsen', nationality: 'Denmark', imageUri: '', birthDate: DateTime(2000, 3, 5), hasSpecialNeeds: false),
     ];
 
-    await saveAllStudents(students);
+    await createAllStudents(students);
   }
 
   List<Student> _parseStudents(Map<String, dynamic> data) {

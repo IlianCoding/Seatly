@@ -1,14 +1,14 @@
-import 'package:seatly/model/student.dart';
+import 'package:seatly/domain/student.dart';
 
 abstract class IStudentRepository{
-  Future<Student?> loadStudent(String id);
-  Future<List<Student>> loadAllStudents();
+  Future<Student?> readStudent(String id);
+  Future<List<Student>> readAllStudents();
 
-  Future<void> saveStudent(Student student);
+  Future<void> createStudent(Student student);
   Future<void> updateStudent(Student student);
   Future<void> deleteStudent(String id);
 
-  Future<void> saveAllStudents(List<Student> students);
+  Future<void> createAllStudents(List<Student> students);
 
   Future<void> initializeStudents();
 }

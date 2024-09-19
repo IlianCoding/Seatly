@@ -2,10 +2,10 @@ import 'package:collection/collection.dart';
 import 'package:injectable/injectable.dart';
 import 'package:seatly/core/utils/json_write_read.dart';
 
-import 'package:seatly/model/classroom.dart';
-import 'package:seatly/model/configuration/layoutType/layout_type.dart';
-import 'package:seatly/model/desk.dart';
-import 'package:seatly/model/position.dart';
+import 'package:seatly/domain/classroom.dart';
+import 'package:seatly/domain/configuration/layoutType/layout_type.dart';
+import 'package:seatly/domain/desk.dart';
+import 'package:seatly/domain/position.dart';
 import 'package:seatly/repository/classroom/i_classroom_repository.dart';
 
 @Singleton(as: IClassroomRepository)
@@ -18,7 +18,7 @@ class ClassroomRepository implements IClassroomRepository {
   }) : _jsonWriteRead = jsonWriteRead;
 
   @override
-  Future<Classroom?> loadClassroom(String id) async {
+  Future<Classroom?> readClassroom(String id) async {
     final file = await _jsonWriteRead.getFile(fileName);
     final data = await _jsonWriteRead.readDataFromFile(file);
     final classrooms = _parseClassrooms(data);
@@ -27,7 +27,7 @@ class ClassroomRepository implements IClassroomRepository {
   }
 
   @override
-  Future<List<Classroom>> loadAllClassrooms() async {
+  Future<List<Classroom>> readAllClassrooms() async {
     final file = await _jsonWriteRead.getFile(fileName);
     final data = await _jsonWriteRead.readDataFromFile(file);
 
@@ -35,7 +35,7 @@ class ClassroomRepository implements IClassroomRepository {
   }
 
   @override
-  Future<void> saveClassroom(Classroom classroom) async {
+  Future<void> createClassroom(Classroom classroom) async {
     final file = await _jsonWriteRead.getFile(fileName);
     final data = await _jsonWriteRead.readDataFromFile(file);
     final classrooms = _parseClassrooms(data);
@@ -75,7 +75,7 @@ class ClassroomRepository implements IClassroomRepository {
   }
 
   @override
-  Future<void> saveAllClassrooms(List<Classroom> classrooms) async {
+  Future<void> createAllClassrooms(List<Classroom> classrooms) async {
     final file = await _jsonWriteRead.getFile(fileName);
     await _jsonWriteRead.writeDataToFile(file, {'classrooms': classrooms.map((e) => e.toJson()).toList()});
   }
@@ -133,7 +133,7 @@ class ClassroomRepository implements IClassroomRepository {
       )
     ];
 
-    await saveAllClassrooms(classrooms);
+    await createAllClassrooms(classrooms);
   }
 
   List<Classroom> _parseClassrooms(Map<String, dynamic> data) {

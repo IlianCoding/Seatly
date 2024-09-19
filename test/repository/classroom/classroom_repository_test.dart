@@ -5,12 +5,12 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'package:seatly/core/utils/json_write_read.dart';
-import 'package:seatly/model/classroom.dart';
-import 'package:seatly/model/configuration/layoutType/layout_type.dart';
-import 'package:seatly/model/configuration/sortingOptions/different_sorting_options.dart';
-import 'package:seatly/model/configuration/sortingOptions/sorting_option.dart';
-import 'package:seatly/model/desk.dart';
-import 'package:seatly/model/position.dart';
+import 'package:seatly/domain/classroom.dart';
+import 'package:seatly/domain/configuration/layoutType/layout_type.dart';
+import 'package:seatly/domain/configuration/sortingOptions/different_sorting_options.dart';
+import 'package:seatly/domain/configuration/sortingOptions/sorting_option.dart';
+import 'package:seatly/domain/desk.dart';
+import 'package:seatly/domain/position.dart';
 import 'package:seatly/repository/classroom/classroom_repository.dart';
 
 import 'classroom_repository_test.mocks.dart';
@@ -36,7 +36,7 @@ void main() {
       when(mockJsonWriteRead.readDataFromFile(file))
           .thenAnswer((_) async => {'classrooms': []});
 
-      final classroom = await classroomRepository.loadClassroom('classroom1');
+      final classroom = await classroomRepository.readClassroom('classroom1');
       expect(classroom, isNull);
     });
 
@@ -102,7 +102,7 @@ void main() {
         ]
       });
 
-      final classroom = await classroomRepository.loadClassroom('classroom2');
+      final classroom = await classroomRepository.readClassroom('classroom2');
       expect(classroom, isNotNull);
       expect(classroom?.id, 'classroom2');
       expect(classroom?.name, 'Classroom 2');
@@ -119,7 +119,7 @@ void main() {
       when(mockJsonWriteRead.readDataFromFile(file))
           .thenAnswer((_) async => {'classrooms': []});
 
-      final classrooms = await classroomRepository.loadAllClassrooms();
+      final classrooms = await classroomRepository.readAllClassrooms();
       expect(classrooms, isEmpty);
     });
 
@@ -215,7 +215,7 @@ void main() {
         ]
       });
 
-      final classrooms = await classroomRepository.loadAllClassrooms();
+      final classrooms = await classroomRepository.readAllClassrooms();
       expect(classrooms.length, 3);
       expect(classrooms[0].id, 'classroom1');
       expect(classrooms[2].id, 'classroom3');
@@ -261,7 +261,7 @@ void main() {
       when(mockJsonWriteRead.writeDataToFile(any, any))
           .thenAnswer((_) async => {});
 
-      await classroomRepository.saveClassroom(classroom);
+      await classroomRepository.createClassroom(classroom);
       verify(mockJsonWriteRead.getFile('classroomSeperator.json')).called(1);
       verify(mockJsonWriteRead.readDataFromFile(file)).called(1);
       verify(mockJsonWriteRead.writeDataToFile(file, {
@@ -325,7 +325,7 @@ void main() {
       when(mockJsonWriteRead.writeDataToFile(any, any))
           .thenAnswer((_) async => {});
 
-      await classroomRepository.saveAllClassrooms(classrooms);
+      await classroomRepository.createAllClassrooms(classrooms);
       verify(mockJsonWriteRead.getFile('classroomSeperator.json')).called(1);
       verify(mockJsonWriteRead.writeDataToFile(file, {
         'classrooms': classrooms.map((e) => e.toJson()).toList()

@@ -1,10 +1,10 @@
 import 'package:injectable/injectable.dart';
-import 'package:seatly/model/classroom.dart';
-import 'package:seatly/model/student.dart';
+import 'package:seatly/domain/classroom.dart';
 
 import 'package:seatly/repository/classroom/i_classroom_repository.dart';
 import 'package:seatly/repository/student/i_student_repository.dart';
 import 'package:seatly/service/classroom/i_classroom_service.dart';
+import 'package:seatly/ui/model/classroomdetail_model.dart';
 
 @Singleton(as: IClassroomService)
 class ClassroomService implements IClassroomService{
@@ -14,43 +14,50 @@ class ClassroomService implements IClassroomService{
   ClassroomService({required this.classroomRepository, required this.studentRepository});
 
   @override
-  Future<List<Classroom>> getAllClassrooms() {
-    // TODO: implement getAllClassrooms
-    throw UnimplementedError();
+  Future<List<Classroom>> getAllClassrooms() async {
+    return await classroomRepository.readAllClassrooms();
   }
 
   @override
-  Future<MapEntry<Classroom?, List<Student>>> getClassroomWithStudents(String classroomId) {
-    // TODO: implement getClassroomWithStudents
-    throw UnimplementedError();
+  Future<ClassroomDetailsModel> getClassroomWithStudents(String classroomId) async{
+    try {
+      final classroom = await classroomRepository.readClassroom(classroomId);
+      final students = await studentRepository.readAllStudents();
+      final assignedStudents = students.where((student) => classroom!.studentIds.contains(student.id)).toList();
+
+      if (classroom == null) {
+        throw Exception('Classroom not found');
+      }
+
+      return ClassroomDetailsModel(classroom: classroom, students: assignedStudents);
+    } catch (e) {
+      throw Exception('Classroom not found $e');
+    }
   }
 
   @override
-  Future<void> createClassroom(Classroom classroom) {
-    // TODO: implement saveClassroom
-    throw UnimplementedError();
+  Future<void> addClassroom(Classroom classroom) async {
+    return await classroomRepository.createClassroom(classroom);
   }
 
   @override
-  Future<void> changeClassroom(Classroom classroom) {
-    // TODO: implement changeClassroom
-    throw UnimplementedError();
+  Future<void> changeClassroom(Classroom classroom) async {
+    return await classroomRepository.updateClassroom(classroom);
   }
 
   @override
-  Future<void> removeClassroom(String classroomId) {
-    // TODO: implement removeClassroom
-    throw UnimplementedError();
+  Future<void> removeClassroom(String classroomId) async {
+    return await classroomRepository.deleteClassroom(classroomId);
   }
 
   @override
-  Future<void> initializeData() {
-    // TODO: implement initializeData
-    throw UnimplementedError();
+  Future<void> initializeData() async {
+    await studentRepository.initializeStudents();
+    return await classroomRepository.initializeClassrooms();
   }
 
   @override
-  Future<void> assigningStudentsToDesks(Classroom classroom) {
+  Future<void> assigningStudentsToDesks(Classroom classroom) async {
     // TODO: implement assigningStudentsToDesks
     throw UnimplementedError();
   }

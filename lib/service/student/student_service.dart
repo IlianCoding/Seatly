@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:seatly/model/student.dart';
+import 'package:seatly/domain/student.dart';
 import 'package:seatly/repository/student/i_student_repository.dart';
 import 'package:seatly/service/student/i_student_service.dart';
 
@@ -10,32 +10,27 @@ class StudentService implements IStudentService {
   StudentService({required this.studentRepository});
 
   @override
-  Future<Student?> getStudentById(int id) {
-    // TODO: implement getStudentById
-    throw UnimplementedError();
+  Future<Student?> getStudentById(String id) {
+    return studentRepository.readStudent(id);
   }
 
   @override
   Future<List<Student>> getAllStudents() {
-    // TODO: implement getAllStudents
-    throw UnimplementedError();
+    return studentRepository.readAllStudents();
   }
 
   @override
-  Future<void> createStudent(Student student) {
-    // TODO: implement createStudent
-    throw UnimplementedError();
+  Future<void> addStudent(Student student) {
+    return studentRepository.createStudent(student);
   }
 
   @override
   Future<void> changeStudent(Student student) {
-    // TODO: implement changeStudent
-    throw UnimplementedError();
+    return studentRepository.updateStudent(student);
   }
 
   @override
-  Future<void> removeStudent(int id) {
-    // TODO: implement removeStudent
-    throw UnimplementedError();
+  Future<void> removeStudent(String id) {
+    return studentRepository.deleteStudent(id);
   }
 }

@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:seatly/model/configuration/layoutType/layout_type.dart';
-import 'package:seatly/model/configuration/sortingOptions/different_sorting_options.dart';
-import 'package:seatly/model/desk.dart';
-import 'package:seatly/model/student.dart';
+import 'package:seatly/domain/configuration/layoutType/layout_type.dart';
+import 'package:seatly/domain/configuration/sortingOptions/different_sorting_options.dart';
+import 'package:seatly/domain/desk.dart';
+import 'package:seatly/domain/student.dart';
 
 part 'classroom.g.dart';
 
