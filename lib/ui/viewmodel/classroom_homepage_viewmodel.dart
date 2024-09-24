@@ -19,4 +19,14 @@ class ClassroomHomepageViewModel extends StateNotifier<AsyncValue<List<Classroom
       state = AsyncError(e, StackTrace.current);
     }
   }
+
+  Future<void> deleteClassroom(String classroomId) async {
+    try {
+      await classroomService.removeClassroom(classroomId);
+      final classrooms = await classroomService.getAllClassrooms();
+      state = AsyncData(classrooms);
+    } catch (e) {
+      state = AsyncError(e, StackTrace.current);
+    }
+  }
 }

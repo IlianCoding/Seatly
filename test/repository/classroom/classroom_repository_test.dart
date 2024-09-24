@@ -332,7 +332,7 @@ void main() {
       })).called(1);
     });
 
-    test('Deletes the classroom that corresponds with the given ID successfully.', () async {
+    test('Deletes the classroom that corresponds with the given ID successfully without overwriting existing data.', () async {
       final file = File('test.json');
 
       final initialData = {
@@ -387,6 +387,17 @@ void main() {
               ]
             }
           },
+        ],
+        'students': [
+          {
+            'id': 'student1',
+            'firstName': 'John',
+            'lastName': 'Doe',
+            'nationality': 'USA',
+            'imageUri': '',
+            'birthDate': '2000-01-01T00:00:00.000',
+            'hasSpecialNeeds': false
+          }
         ]
       };
       final updatedData = {
@@ -425,6 +436,17 @@ void main() {
               ]
             }
           },
+        ],
+        'students': [
+          {
+            'id': 'student1',
+            'firstName': 'John',
+            'lastName': 'Doe',
+            'nationality': 'USA',
+            'imageUri': '',
+            'birthDate': '2000-01-01T00:00:00.000',
+            'hasSpecialNeeds': false
+          }
         ]
       };
 

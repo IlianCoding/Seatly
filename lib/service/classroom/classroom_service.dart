@@ -47,13 +47,25 @@ class ClassroomService implements IClassroomService{
 
   @override
   Future<void> removeClassroom(String classroomId) async {
-    return await classroomRepository.deleteClassroom(classroomId);
+    try {
+      final classroom = await classroomRepository.readClassroom(classroomId);
+      if (classroom == null) {
+        throw Exception('Classroom not found');
+      }
+
+      for(final studentId in classroom.studentIds){
+        await studentRepository.deleteStudent(studentId);
+      }
+      await classroomRepository.deleteClassroom(classroomId);
+    } catch (e) {
+      throw Exception('Failed to delete classroom and its students: $e');
+    }
   }
 
   @override
   Future<void> initializeData() async {
     await studentRepository.initializeStudents();
-    return await classroomRepository.initializeClassrooms();
+    await classroomRepository.initializeClassrooms();
   }
 
   @override

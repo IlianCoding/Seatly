@@ -144,6 +144,7 @@ void main() {
 
     test('Saves all the given students correctly.', () async {
       final file = File('test.json');
+
       final students = [
         Student(
           id: 'student1',
@@ -167,13 +168,15 @@ void main() {
 
       when(mockJsonWriteRead.getFile(any))
           .thenAnswer((_) async => file);
-      when(mockJsonWriteRead.writeDataToFile(file, any))
+      when(mockJsonWriteRead.readDataFromFile(file))
           .thenAnswer((_) async => {'students': []});
-      when(mockJsonWriteRead.writeDataToFile(any, any))
+      when(mockJsonWriteRead.writeDataToFile(file, any))
           .thenAnswer((_) async => {});
 
       await studentRepository.createAllStudents(students);
+
       verify(mockJsonWriteRead.getFile('classroomSeperator.json')).called(1);
+      verify(mockJsonWriteRead.readDataFromFile(file)).called(1);
       verify(mockJsonWriteRead.writeDataToFile(file, {
         'students': students.map((e) => e.toJson()).toList()
       })).called(1);

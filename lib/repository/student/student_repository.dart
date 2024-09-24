@@ -35,22 +35,31 @@ class StudentRepository implements IStudentRepository {
   Future<void> createStudent(Student student) async {
     final file = await _jsonWriteRead.getFile(fileName);
     final data = await _jsonWriteRead.readDataFromFile(file);
-    final students = _parseStudents(data);
 
-    students.add(student);
-    await _jsonWriteRead.writeDataToFile(file, {'students': students.map((e) => e.toJson()).toList()});
+    if(!data.containsKey('students')){
+      data['students'] = [];
+    }
+
+    data['students'].add(student.toJson());
+    await _jsonWriteRead.writeDataToFile(file, data);
   }
 
   @override
   Future<void> updateStudent(Student student) async {
     final file = await _jsonWriteRead.getFile(fileName);
     final data = await _jsonWriteRead.readDataFromFile(file);
-    final students = _parseStudents(data);
 
+    if(!data.containsKey('students')){
+      throw Exception('No students found');
+    }
+
+    final students = _parseStudents(data);
     final index = students.indexWhere((c) => c.id == student.id);
-    if(index >= 0){
+
+    if (index >= 0) {
       students[index] = student;
-      await _jsonWriteRead.writeDataToFile(file, {'students': students.map((e) => e.toJson()).toList()});
+      data['students'] = students.map((e) => e.toJson().cast<String, Object>()).toList();
+      await _jsonWriteRead.writeDataToFile(file, data);
     } else {
       throw Exception('Student with id ${student.id} not found');
     }
@@ -60,12 +69,18 @@ class StudentRepository implements IStudentRepository {
   Future<void> deleteStudent(String id) async {
     final file = await _jsonWriteRead.getFile(fileName);
     final data = await _jsonWriteRead.readDataFromFile(file);
-    final students = _parseStudents(data);
 
+    if (!data.containsKey('students')) {
+      throw Exception('No students found');
+    }
+
+    final students = _parseStudents(data);
     final index = students.indexWhere((c) => c.id == id);
-    if(index >= 0){
+
+    if (index >= 0) {
       students.removeAt(index);
-      await _jsonWriteRead.writeDataToFile(file, {'students': students.map((e) => e.toJson()).toList()});
+      data['students'] = students.map((e) => e.toJson().cast<String, Object>()).toList();
+      await _jsonWriteRead.writeDataToFile(file, data);
     } else {
       throw Exception('Student with id $id not found');
     }
@@ -74,7 +89,14 @@ class StudentRepository implements IStudentRepository {
   @override
   Future<void> createAllStudents(List<Student> students) async {
     final file = await _jsonWriteRead.getFile(fileName);
-    await _jsonWriteRead.writeDataToFile(file, {'students': students.map((e) => e.toJson()).toList()});
+    final data = await _jsonWriteRead.readDataFromFile(file);
+
+    if(!data.containsKey('students')){
+      data['students'] = [];
+    }
+
+    data['students'].addAll(students.map((e) => e.toJson()).toList());
+    await _jsonWriteRead.writeDataToFile(file, data);
   }
 
   @override

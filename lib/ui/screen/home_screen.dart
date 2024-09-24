@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+
 import 'package:seatly/ui/screen/classroom_details_screen.dart';
 import 'package:seatly/ui/viewmodel/providers/viewmodel_providers.dart';
 import 'package:seatly/ui/widget/classroom_card_widget.dart';
+import 'package:seatly/ui/widget/delete_confirmation_dialog.dart';
 
 final searchQueryProvider = StateProvider<String>((ref) => '');
 
@@ -60,25 +63,48 @@ class HomeScreen extends HookConsumerWidget {
                     itemCount: filteredClassrooms.length,
                     itemBuilder: (context, index) {
                       final classroom = filteredClassrooms[index];
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ClassroomDetailScreen(classroomId: classroom.id)
-                              )
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                          child: ClassroomCard(classroom: classroom),
-                        ),
+                      return Slidable(
+                          key: ValueKey(classroom.id),
+                          endActionPane: ActionPane(
+                              motion: const ScrollMotion(),
+                              children: [
+                                SlidableAction(
+                                  onPressed: (context) {
+                                    _showDeleteConfirmationDialog(
+                                        context, ref, classroom.id);
+                                  },
+                                  backgroundColor: Colors.red,
+                                  foregroundColor: Colors.white,
+                                  icon: Icons.delete_forever,
+                                  label: 'Delete',
+                                )
+                              ]),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          ClassroomDetailScreen(
+                                              classroomId: classroom.id
+                                          )
+                                  )
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16.0, vertical: 8.0),
+                              child: ClassroomCard(classroom: classroom),
+                            ),
+                          )
                       );
                     },
                   );
                 },
                 error: (error, stack) => Center(child: Text('Error: $error')),
-                loading: () => const Center(child: CircularProgressIndicator())
+                loading: () =>
+                    const Center(child: CircularProgressIndicator()
+                    )
             ),
           )
         ],
@@ -92,21 +118,46 @@ class HomeScreen extends HookConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                    onPressed: () => {},
+                    onPressed: () => {
+                          //TODO: Add Importing window
+                        },
                     icon: const Icon(Icons.file_download_outlined, size: 30)
                 ),
                 FloatingActionButton(
                   onPressed: () {},
                   backgroundColor: Colors.purple[100],
-                  child: Icon(Icons.add_circle, color: Colors.grey[800], size: 40),
+                  child:
+                      Icon(Icons.add_circle, color: Colors.grey[800], size: 40),
                 ),
                 IconButton(
-                    onPressed: () => {},
-                    icon: const Icon(Icons.settings, size: 30,)
+                    onPressed: () => {
+                          //TODO: Add settings screen
+                        },
+                    icon: const Icon(
+                      Icons.settings,
+                      size: 30,
+                    )
                 )
               ],
             ),
           )),
     );
+  }
+
+  void _showDeleteConfirmationDialog(
+      BuildContext context, WidgetRef ref, String classroomId) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return DeleteConfirmationDialog(
+              title: 'Delete Classroom',
+              content: 'Are you sure you want to delete this classroom?',
+              onConfirm: () {
+                ref
+                    .read(classroomHomepageViewModel.notifier)
+                    .deleteClassroom(classroomId);
+                Navigator.of(context).pop();
+              });
+        });
   }
 }

@@ -38,22 +38,30 @@ class ClassroomRepository implements IClassroomRepository {
   Future<void> createClassroom(Classroom classroom) async {
     final file = await _jsonWriteRead.getFile(fileName);
     final data = await _jsonWriteRead.readDataFromFile(file);
-    final classrooms = _parseClassrooms(data);
 
-    classrooms.add(classroom);
-    await _jsonWriteRead.writeDataToFile(file, {'classrooms': classrooms.map((e) => e.toJson()).toList()});
+    if (!data.containsKey('classrooms')) {
+      data['classrooms'] = [];
+    }
+
+    data['classrooms'].add(classroom.toJson());
+    await _jsonWriteRead.writeDataToFile(file, data);
   }
 
   @override
   Future<void> updateClassroom(Classroom classroom) async {
     final file = await _jsonWriteRead.getFile(fileName);
     final data = await _jsonWriteRead.readDataFromFile(file);
-    final classrooms = _parseClassrooms(data);
 
+    if (!data.containsKey('classrooms')) {
+      throw Exception('No classrooms found');
+    }
+
+    final classrooms = _parseClassrooms(data);
     final index = classrooms.indexWhere((c) => c.id == classroom.id);
-    if(index >= 0){
+    if (index >= 0) {
       classrooms[index] = classroom;
-      await _jsonWriteRead.writeDataToFile(file, {'classrooms': classrooms.map((e) => e.toJson()).toList()});
+      data['classrooms'] = classrooms.map((e) => e.toJson().cast<String, Object>()).toList();
+      await _jsonWriteRead.writeDataToFile(file, data);
     } else {
       throw Exception('Classroom with id ${classroom.id} not found');
     }
@@ -63,12 +71,18 @@ class ClassroomRepository implements IClassroomRepository {
   Future<void> deleteClassroom(String id) async {
     final file = await _jsonWriteRead.getFile(fileName);
     final data = await _jsonWriteRead.readDataFromFile(file);
-    final classrooms = _parseClassrooms(data);
 
+    if (!data.containsKey('classrooms')) {
+      throw Exception('No classrooms found');
+    }
+
+    final classrooms = _parseClassrooms(data);
     final index = classrooms.indexWhere((c) => c.id == id);
-    if(index >= 0){
+
+    if (index >= 0) {
       classrooms.removeAt(index);
-      await _jsonWriteRead.writeDataToFile(file, {'classrooms': classrooms.map((e) => e.toJson()).toList()});
+      data['classrooms'] = classrooms.map((e) => e.toJson().cast<String, Object>()).toList();
+      await _jsonWriteRead.writeDataToFile(file, data);
     } else {
       throw Exception('Classroom with id $id not found');
     }
@@ -77,7 +91,14 @@ class ClassroomRepository implements IClassroomRepository {
   @override
   Future<void> createAllClassrooms(List<Classroom> classrooms) async {
     final file = await _jsonWriteRead.getFile(fileName);
-    await _jsonWriteRead.writeDataToFile(file, {'classrooms': classrooms.map((e) => e.toJson()).toList()});
+    final data = await _jsonWriteRead.readDataFromFile(file);
+
+    if(!data.containsKey('classrooms')){
+      data['classrooms'] = [];
+    }
+
+    data['classrooms'].addAll(classrooms.map((e) => e.toJson()).toList());
+    await _jsonWriteRead.writeDataToFile(file, data);
   }
 
   @override
@@ -90,7 +111,7 @@ class ClassroomRepository implements IClassroomRepository {
           desks: [
             Desk(id: '1', position: Position(row: 1, column: 1), assignedStudentId: 'student1'),
             Desk(id: '2', position: Position(row: 1, column: 2), assignedStudentId: 'student2'),
-            Desk(id: '3', position: Position(row: 2, column: 1), assignedStudentId: 'student3'),
+            Desk(id: '3', position: Position(row: 2, column: 1), assignedStudentId: null),
             Desk(id: '4', position: Position(row: 2, column: 2), assignedStudentId: null)
           ],
           studentIds: ['student1', 'student2']
