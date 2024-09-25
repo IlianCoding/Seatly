@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 
 import 'package:seatly/core/injection.dart';
+import 'package:seatly/ui/providers/settings_providers.dart';
 import 'package:seatly/ui/screen/home_screen.dart';
 
 void main() {
@@ -16,13 +17,18 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final locale = ref.watch(languageProvider);
+    final themeMode = ref.watch(themeProvider);
+    final fontSize = ref.watch(fontSizeProvider);
+
     return MaterialApp(
       title: 'Seatly',
+      locale: locale,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -37,6 +43,7 @@ class MyApp extends StatelessWidget {
         Locale('es', '')
       ],
       theme: ThemeData(
+        textTheme: TextTheme(displayMedium: TextStyle(fontSize: fontSize)),
         primarySwatch: Colors.purple,
         brightness: Brightness.light,
         scaffoldBackgroundColor: Colors.white,
@@ -46,6 +53,7 @@ class MyApp extends StatelessWidget {
         ), bottomAppBarTheme: const BottomAppBarTheme(color: Colors.white),
       ),
       darkTheme: ThemeData(
+        textTheme: TextTheme(displayMedium: TextStyle(fontSize: fontSize)),
         primarySwatch: Colors.purple,
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.black,
@@ -54,7 +62,7 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.white,
         ), bottomAppBarTheme: const BottomAppBarTheme(color: Colors.black),
       ),
-      themeMode: ThemeMode.system, // Use system theme mode
+      themeMode: themeMode, // Use system theme mode
       home: const HomeScreen(),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:seatly/ui/viewmodel/providers/viewmodel_providers.dart';
+import 'package:seatly/ui/providers/viewmodel_providers.dart';
 
 class ClassroomDetailScreen extends ConsumerWidget {
   final String classroomId;

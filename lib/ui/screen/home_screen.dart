@@ -3,9 +3,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:seatly/ui/providers/viewmodel_providers.dart';
 
 import 'package:seatly/ui/screen/classroom_details_screen.dart';
-import 'package:seatly/ui/viewmodel/providers/viewmodel_providers.dart';
+import 'package:seatly/ui/screen/settings_screen.dart';
 import 'package:seatly/ui/widget/classroom_card_widget.dart';
 import 'package:seatly/ui/widget/delete_confirmation_dialog.dart';
 
@@ -132,7 +133,10 @@ class HomeScreen extends HookConsumerWidget {
                 ),
                 IconButton(
                     onPressed: () => {
-                          //TODO: Add settings screen
+                          Navigator.push(
+                              context, 
+                              MaterialPageRoute(builder: (context) => const SettingsScreen())
+                          )
                         },
                     icon: const Icon(
                       Icons.settings,
