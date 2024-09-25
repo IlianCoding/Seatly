@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 
 import 'package:seatly/core/injection.dart';
 import 'package:seatly/ui/screen/home_screen.dart';
@@ -20,6 +23,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Seatly',
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en', ''),
+        Locale('nl', ''),
+        Locale('fr', ''),
+        Locale('de', ''),
+        Locale('es', '')
+      ],
       theme: ThemeData(
         primarySwatch: Colors.purple,
         brightness: Brightness.light,

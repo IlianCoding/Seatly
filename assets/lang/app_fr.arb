@@ -1,0 +1,11 @@
+{
+  "seatly": "Seatly",
+  "home": "Accueil",
+  "settings": "Paramètres",
+  "add": "Ajouter",
+  "delete": "Supprimer",
+  "deleteDialogTitleClassroom": "Supprimer salle de classe",
+  "deleteDialogContentClassroom": "Voulez-vous vraiment supprimer cette salle de classe?",
+  "info": "Info",
+  "searchBar": "Rechercher salle de classe"
+}

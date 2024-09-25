@@ -1,0 +1,11 @@
+{
+  "seatly": "Seatly",
+  "home": "Home",
+  "settings": "Settings",
+  "add": "Add",
+  "delete": "Delete",
+  "deleteDialogTitleClassroom": "Delete classroom",
+  "deleteDialogContentClassroom": "Are you sure you want to delete this classroom?",
+  "info": "Info",
+  "searchBar": "Search classroom"
+}

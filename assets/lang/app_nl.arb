@@ -1,0 +1,11 @@
+{
+  "seatly": "Seatly",
+  "home": "Thuis",
+  "settings": "Instellingen",
+  "add": "Toevoegen",
+  "delete": "Verwijderen",
+  "deleteDialogTitleClassroom": "Klaslokaal verwijderen",
+  "deleteDialogContentClassroom": "Weet je zeker dat je dit klaslokaal wilt verwijderen?",
+  "info": "Info",
+  "searchBar": "Zoek klaslokaal"
+}

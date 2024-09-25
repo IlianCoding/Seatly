@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:seatly/ui/screen/classroom_details_screen.dart';
 import 'package:seatly/ui/viewmodel/providers/viewmodel_providers.dart';
@@ -21,7 +22,7 @@ class HomeScreen extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: Text(AppLocalizations.of(context)!.home),
         centerTitle: true,
         actions: [
           IconButton(
@@ -38,10 +39,10 @@ class HomeScreen extends HookConsumerWidget {
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               controller: searchController,
-              decoration: const InputDecoration(
-                labelText: 'Search Classroom',
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.searchBar,
+                prefixIcon: const Icon(Icons.search),
+                border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
               ),
@@ -76,7 +77,7 @@ class HomeScreen extends HookConsumerWidget {
                                   backgroundColor: Colors.red,
                                   foregroundColor: Colors.white,
                                   icon: Icons.delete_forever,
-                                  label: 'Delete',
+                                  label: AppLocalizations.of(context)!.delete,
                                 )
                               ]),
                           child: GestureDetector(
@@ -150,8 +151,8 @@ class HomeScreen extends HookConsumerWidget {
         context: context,
         builder: (BuildContext context) {
           return DeleteConfirmationDialog(
-              title: 'Delete Classroom',
-              content: 'Are you sure you want to delete this classroom?',
+              title: AppLocalizations.of(context)!.deleteDialogTitleClassroom,
+              content: AppLocalizations.of(context)!.deleteDialogContentClassroom,
               onConfirm: () {
                 ref
                     .read(classroomHomepageViewModel.notifier)
