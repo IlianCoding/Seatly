@@ -1,6 +1,7 @@
 {
   "seatly": "Seatly",
   "home": "Accueil",
+
   "settings": "Paramètres",
   "generalSettings": "Paramètres généraux",
   "feedback": "Retour",
@@ -14,9 +15,19 @@
   "submit": "Soumettre",
   "cancel": "Annuler",
   "add": "Ajouter",
+
   "delete": "Supprimer",
   "deleteDialogTitleClassroom": "Supprimer salle de classe",
   "deleteDialogContentClassroom": "Voulez-vous vraiment supprimer cette salle de classe?",
+
   "info": "Info",
+  "addButtonIntro": "Cliquez sur le bouton pour ajouter une salle de classe",
+  "settingsButtonIntro": "Cliquez sur le bouton pour ouvrir les paramètres",
+  "importButtonIntro": "Cliquez sur le bouton pour importer des salles de classe",
+  "searchBarFieldIntro": "Recherchez une salle de classe ici",
+  "classroomCardIntro": "Cliquez sur une salle de classe pour l'éditer ou la visualiser",
+  "skip": "Passer",
+  "next": "Suivant",
+
   "searchBar": "Rechercher salle de classe"
 }

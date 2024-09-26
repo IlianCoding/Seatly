@@ -1,6 +1,7 @@
 {
   "seatly": "Seatly",
   "home": "Home",
+
   "settings": "Settings",
   "generalSettings": "General settings",
   "feedback": "Feedback",
@@ -13,10 +14,21 @@
   "enterYourFeedback": "Enter your feedback",
   "submit": "Submit",
   "cancel": "Cancel",
+
   "add": "Add",
+
   "delete": "Delete",
   "deleteDialogTitleClassroom": "Delete classroom",
   "deleteDialogContentClassroom": "Are you sure you want to delete this classroom?",
+
   "info": "Info",
+  "addButtonIntro": "Click the button to add a classroom",
+  "settingsButtonIntro": "Click the button to open settings",
+  "importButtonIntro": "Click the button to import classrooms",
+  "searchBarFieldIntro": "Search for a classroom here",
+  "classroomCardIntro": "Click on a classroom to edit or view it",
+  "skip": "Skip",
+  "next": "Next",
+
   "searchBar": "Search classroom"
 }

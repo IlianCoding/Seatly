@@ -1,6 +1,7 @@
 {
   "seatly": "Seatly",
   "home": "Thuis",
+
   "settings": "Instellingen",
   "generalSettings": "Algemene instellingen",
   "feedback": "Feedback",
@@ -13,10 +14,21 @@
   "enterYourFeedback": "Voer uw feedback in",
   "submit": "Verzenden",
   "cancel": "Annuleren",
+
   "add": "Toevoegen",
+
   "delete": "Verwijderen",
   "deleteDialogTitleClassroom": "Klaslokaal verwijderen",
   "deleteDialogContentClassroom": "Weet je zeker dat je dit klaslokaal wilt verwijderen?",
+
   "info": "Info",
+  "addButtonIntro": "Klik op de knop om een klaslokaal toe te voegen",
+  "settingsButtonIntro": "Klik op de knop om de instellingen te openen",
+  "importButtonIntro": "Klik op de knop om een klaslokalen te importeren",
+  "searchBarFieldIntro": "Zoek hier naar een klaslokaal",
+  "classroomCardIntro": "Klik op een klaslokaal om het te bewerken of te bekijken",
+  "skip": "Overslaan",
+  "next": "Volgende",
+
   "searchBar": "Zoek klaslokaal"
 }

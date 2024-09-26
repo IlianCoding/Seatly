@@ -1,6 +1,7 @@
 {
   "seatly": "Seatly",
   "home": "Startseite",
+
   "settings": "Einstellungen",
   "generalSettings": "Allgemeine Einstellungen",
   "feedback": "Feedback",
@@ -13,10 +14,21 @@
   "enterYourFeedback": "Geben Sie Ihr Feedback ein",
   "submit": "Einreichen",
   "cancel": "Stornieren",
+
   "add": "Hinzufügen",
+
   "delete": "Löschen",
   "deleteDialogTitleClassroom": "Klassenzimmer löschen",
   "deleteDialogContentClassroom": "Möchten Sie dieses Klassenzimmer wirklich löschen?",
+
   "info": "Information",
+  "addButtonIntro": "Klicken Sie auf die Schaltfläche, um ein Klassenzimmer hinzuzufügen",
+  "settingsButtonIntro": "Klicken Sie auf die Schaltfläche, um die Einstellungen zu öffnen",
+  "importButtonIntro": "Klicken Sie auf die Schaltfläche, um Klassenzimmer zu importieren",
+  "searchBarFieldIntro": "Suchen Sie hier nach einem Klassenzimmer",
+  "classroomCardIntro": "Klicken Sie auf ein Klassenzimmer, um es zu bearbeiten oder anzuzeigen",
+  "skip": "Überspringen",
+  "next": "Nächster",
+
   "searchBar": "Klassenzimmer suchen"
 }

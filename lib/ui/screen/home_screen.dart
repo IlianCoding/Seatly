@@ -9,6 +9,8 @@ import 'package:seatly/ui/screen/classroom_details_screen.dart';
 import 'package:seatly/ui/screen/settings_screen.dart';
 import 'package:seatly/ui/widget/classroom_card_widget.dart';
 import 'package:seatly/ui/widget/delete_confirmation_dialog.dart';
+import 'package:seatly/ui/widget/info/info_description_coachmark.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 final searchQueryProvider = StateProvider<String>((ref) => '');
 
@@ -17,9 +19,109 @@ class HomeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    TutorialCoachMark? tutorialCoachMark;
+    List<TargetFocus> targets = [];
+
+    GlobalKey addButtonKey = GlobalKey();
+    GlobalKey settingsButtonKey = GlobalKey();
+    GlobalKey importButtonKey = GlobalKey();
+    GlobalKey searchFieldKey = GlobalKey();
+
     final classrooms = ref.watch(classroomHomepageViewModel);
     final searchQuery = ref.watch(searchQueryProvider);
     final searchController = useTextEditingController(text: searchQuery);
+
+    void initTargets(){
+      targets.add(
+          TargetFocus(
+              identify: "ImportButton",
+              keyTarget: importButtonKey,
+              contents: [
+                TargetContent(
+                    align: ContentAlign.top,
+                    builder: (context, controller) {
+                      return InfoDescription(
+                          description: AppLocalizations.of(context)!.importButtonIntro,
+                          skipButtonText: AppLocalizations.of(context)!.skip,
+                          nextButtonText: AppLocalizations.of(context)!.next,
+                          onNext: () => controller.next(),
+                          onSkip: () => controller.skip()
+                      );
+                    }
+                )
+              ]
+          )
+      );
+      targets.add(
+        TargetFocus(
+          identify: "AddButton",
+          keyTarget: addButtonKey,
+          contents: [
+            TargetContent(
+              align: ContentAlign.top,
+              builder: (context, controller) {
+                return InfoDescription(
+                    description: AppLocalizations.of(context)!.addButtonIntro,
+                    skipButtonText: AppLocalizations.of(context)!.skip,
+                    nextButtonText: AppLocalizations.of(context)!.next,
+                    onNext: () => controller.next(),
+                    onSkip: () => controller.skip()
+                );
+              }
+            )
+          ]
+        )
+      );
+      targets.add(
+          TargetFocus(
+              identify: "SettingsButton",
+              keyTarget: settingsButtonKey,
+              contents: [
+                TargetContent(
+                    align: ContentAlign.top,
+                    builder: (context, controller) {
+                      return InfoDescription(
+                          description: AppLocalizations.of(context)!.settingsButtonIntro,
+                          skipButtonText: AppLocalizations.of(context)!.skip,
+                          nextButtonText: AppLocalizations.of(context)!.next,
+                          onNext: () => controller.next(),
+                          onSkip: () => controller.skip()
+                      );
+                    }
+                )
+              ]
+          )
+      );
+      targets.add(
+          TargetFocus(
+              identify: "SearchField",
+              keyTarget: searchFieldKey,
+              shape: ShapeLightFocus.RRect,
+              contents: [
+                TargetContent(
+                    align: ContentAlign.bottom,
+                    builder: (context, controller) {
+                      return InfoDescription(
+                          description: AppLocalizations.of(context)!.searchBarFieldIntro,
+                          skipButtonText: AppLocalizations.of(context)!.skip,
+                          nextButtonText: AppLocalizations.of(context)!.next,
+                          onNext: () => controller.next(),
+                          onSkip: () => controller.skip()
+                      );
+                    }
+                )
+              ]
+          )
+      );
+    }
+
+    void showInfoCoachMark(){
+      initTargets();
+      tutorialCoachMark = TutorialCoachMark(
+          targets: targets,
+          colorShadow: Colors.black
+      )..show(context: context);
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -28,9 +130,7 @@ class HomeScreen extends HookConsumerWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.info_outline_rounded),
-            onPressed: () {
-              //TODO: Add info dialog
-            },
+            onPressed: () => showInfoCoachMark(),
           )
         ],
       ),
@@ -39,6 +139,7 @@ class HomeScreen extends HookConsumerWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
+              key: searchFieldKey,
               controller: searchController,
               decoration: InputDecoration(
                 labelText: AppLocalizations.of(context)!.searchBar,
@@ -120,18 +221,21 @@ class HomeScreen extends HookConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
+                    key: importButtonKey,
                     onPressed: () => {
                           //TODO: Add Importing window
                         },
                     icon: const Icon(Icons.file_download_outlined, size: 30)
                 ),
                 FloatingActionButton(
+                  key: addButtonKey,
                   onPressed: () {},
                   backgroundColor: Colors.purple[100],
                   child:
                       Icon(Icons.add_circle, color: Colors.grey[800], size: 40),
                 ),
                 IconButton(
+                    key: settingsButtonKey,
                     onPressed: () => {
                           Navigator.push(
                               context, 
@@ -149,8 +253,7 @@ class HomeScreen extends HookConsumerWidget {
     );
   }
 
-  void _showDeleteConfirmationDialog(
-      BuildContext context, WidgetRef ref, String classroomId) {
+  void _showDeleteConfirmationDialog(BuildContext context, WidgetRef ref, String classroomId) {
     showDialog(
         context: context,
         builder: (BuildContext context) {

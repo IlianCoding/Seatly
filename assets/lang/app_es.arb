@@ -1,6 +1,7 @@
 {
   "seatly": "Seatly",
   "home": "Inicio",
+
   "settings": "Configuraciones",
   "generalSettings": "Configuración general",
   "feedback": "Comentarios",
@@ -13,10 +14,21 @@
   "enterYourFeedback": "Ingrese sus comentarios",
   "submit": "Enviar",
   "cancel": "Cancelar",
+
   "add": "Agregar",
+
   "delete": "Eliminar",
   "deleteDialogTitleClassroom": "Eliminar aula",
   "deleteDialogContentClassroom": "¿Estás seguro de que quieres eliminar este aula?",
+
   "info": "Información",
+  "addButtonIntro": "Haga clic en el botón para agregar un aula",
+  "settingsButtonIntro": "Haga clic en el botón para abrir la configuración",
+  "importButtonIntro": "Haga clic en el botón para importar aulas",
+  "searchBarFieldIntro": "Busque un aula aquí",
+  "classroomCardIntro": "Haga clic en un aula para editarla o verla",
+  "skip": "Saltar",
+  "next": "Siguiente",
+
   "searchBar": "Buscar aula"
 }
