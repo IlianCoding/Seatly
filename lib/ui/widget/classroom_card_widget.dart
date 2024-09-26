@@ -16,11 +16,11 @@ class ClassroomCard extends StatelessWidget {
         case LayoutType.groupedLayout:
           return 'assets/images/grouped.png';
         case LayoutType.uShape:
-          return 'assets/images/ushape.png';
+          return 'assets/images/uShape.png';
         case LayoutType.labLayout:
           return 'assets/images/laboratory.png';
         case LayoutType.specialUShape:
-          return 'assets/images/ushape.png';
+          return 'assets/images/specialUShape.png';
         default:
           return 'assets/images/rowbyrow.png';
       }

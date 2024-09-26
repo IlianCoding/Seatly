@@ -6,7 +6,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:seatly/core/injection.dart';
 import 'package:seatly/ui/providers/settings_providers.dart';
+import 'package:seatly/ui/screen/detail_screens/classroom_details_screen.dart';
 import 'package:seatly/ui/screen/home_screen.dart';
+import 'package:seatly/ui/screen/settings_screens/settings_screen.dart';
+import 'package:seatly/ui/screen/splash_screen.dart';
 
 void main() {
   configureDependencies();
@@ -16,6 +19,8 @@ void main() {
     )
   );
 }
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
@@ -28,6 +33,7 @@ class MyApp extends ConsumerWidget {
 
     return MaterialApp(
       title: 'Seatly',
+      navigatorKey: navigatorKey,
       locale: locale,
       localizationsDelegates: const [
         AppLocalizations.delegate,
@@ -62,8 +68,16 @@ class MyApp extends ConsumerWidget {
           foregroundColor: Colors.white,
         ), bottomAppBarTheme: const BottomAppBarTheme(color: Colors.black),
       ),
-      themeMode: themeMode, // Use system theme mode
-      home: const HomeScreen(),
+      themeMode: themeMode,
+      routes: {
+        '/': (context) => const SplashScreen(),
+        '/home': (context) => const HomeScreen(),
+        '/settings': (context) => const SettingsScreen(),
+        '/classroomDetail': (context) {
+          final route = ModalRoute.of(context)!.settings.arguments as String;
+          return ClassroomDetailScreen(classroomId: route);
+        },
+      },
     );
   }
 }

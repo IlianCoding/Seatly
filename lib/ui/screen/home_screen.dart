@@ -5,8 +5,6 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:seatly/ui/providers/viewmodel_providers.dart';
 
-import 'package:seatly/ui/screen/classroom_details_screen.dart';
-import 'package:seatly/ui/screen/settings_screen.dart';
 import 'package:seatly/ui/widget/classroom_card_widget.dart';
 import 'package:seatly/ui/widget/delete_confirmation_dialog.dart';
 import 'package:seatly/ui/widget/info/info_description_coachmark.dart';
@@ -184,14 +182,10 @@ class HomeScreen extends HookConsumerWidget {
                               ]),
                           child: GestureDetector(
                             onTap: () {
-                              Navigator.push(
+                              Navigator.pushNamed(
                                   context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          ClassroomDetailScreen(
-                                              classroomId: classroom.id
-                                          )
-                                  )
+                                  '/classroomDetail',
+                                  arguments: classroom.id
                               );
                             },
                             child: Padding(
@@ -237,10 +231,7 @@ class HomeScreen extends HookConsumerWidget {
                 IconButton(
                     key: settingsButtonKey,
                     onPressed: () => {
-                          Navigator.push(
-                              context, 
-                              MaterialPageRoute(builder: (context) => const SettingsScreen())
-                          )
+                          Navigator.pushNamed(context, '/settings')
                         },
                     icon: const Icon(
                       Icons.settings,
