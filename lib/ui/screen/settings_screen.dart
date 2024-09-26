@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:ionicons/ionicons.dart';
 
 import 'package:seatly/ui/providers/settings_providers.dart';
+import 'package:seatly/ui/widget/settings/feedback_item.dart';
 import 'package:seatly/ui/widget/settings/font_item.dart';
 import 'package:seatly/ui/widget/settings/language_item.dart';
 import 'package:seatly/ui/widget/settings/theme_switch.dart';
@@ -88,6 +89,19 @@ class SettingsScreen extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
+                  FeedbackItem(
+                    title: AppLocalizations.of(context)!.reportABug,
+                    bgColor: Colors.green.shade100,
+                    iconColor: Colors.green,
+                    icon: Ionicons.bug_outline,
+                  ),
+                  const SizedBox(height: 20),
+                  FeedbackItem(
+                    title: AppLocalizations.of(context)!.contactUs,
+                    bgColor: Colors.brown.shade100,
+                    iconColor: Colors.brown,
+                    icon: Ionicons.people_outline,
+                  )
                 ],
               ),
             ],
