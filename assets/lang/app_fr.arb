@@ -14,7 +14,13 @@
   "enterYourFeedback": "Entrez votre retour",
   "submit": "Soumettre",
   "cancel": "Annuler",
+
   "add": "Ajouter",
+  "addClassroomDetails": "Détails de la salle de classe",
+  "addClassroomName": "Nom de la salle de classe",
+  "addClassroomTotalDesks": "Nombre total de bureaux",
+  "addClassroomLayoutTypeDescription": "Sélectionnez le type de disposition de la salle de classe",
+  "addClassroomLayoutType": "Type de disposition",
 
   "delete": "Supprimer",
   "deleteDialogTitleClassroom": "Supprimer salle de classe",

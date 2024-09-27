@@ -16,6 +16,11 @@
   "cancel": "Annuleren",
 
   "add": "Toevoegen",
+  "addClassroomDetails": "Klaslokaal details",
+  "addClassroomName": "Klaslokaal naam",
+  "addClassroomTotalDesks": "Totaal bureaus",
+  "addClassroomLayoutTypeDescription": "Selecteer het lay-outtype van het klaslokaal",
+  "addClassroomLayoutType": "Lay-outtype",
 
   "delete": "Verwijderen",
   "deleteDialogTitleClassroom": "Klaslokaal verwijderen",

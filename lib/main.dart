@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:seatly/core/injection.dart';
 import 'package:seatly/ui/providers/settings_providers.dart';
+import 'package:seatly/ui/screen/add_screens/add_classroom_name_screen.dart';
 import 'package:seatly/ui/screen/detail_screens/classroom_details_screen.dart';
 import 'package:seatly/ui/screen/home_screen.dart';
 import 'package:seatly/ui/screen/settings_screens/settings_screen.dart';
@@ -33,6 +34,7 @@ class MyApp extends ConsumerWidget {
 
     return MaterialApp(
       title: 'Seatly',
+      debugShowCheckedModeBanner: false,
       navigatorKey: navigatorKey,
       locale: locale,
       localizationsDelegates: const [
@@ -77,6 +79,7 @@ class MyApp extends ConsumerWidget {
           final route = ModalRoute.of(context)!.settings.arguments as String;
           return ClassroomDetailScreen(classroomId: route);
         },
+        '/addClassroomName': (context) => const AddClassroomNameScreen()
       },
     );
   }

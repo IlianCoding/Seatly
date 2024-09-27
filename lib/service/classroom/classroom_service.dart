@@ -19,6 +19,12 @@ class ClassroomService implements IClassroomService{
   }
 
   @override
+  Future<List<String>> getAllClassroomIds() async {
+    final classrooms = await classroomRepository.readAllClassrooms();
+    return classrooms.map((classroom) => classroom.id).toList();
+  }
+
+  @override
   Future<ClassroomDetailsModel> getClassroomWithStudents(String classroomId) async{
     try {
       final classroom = await classroomRepository.readClassroom(classroomId);

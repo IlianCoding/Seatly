@@ -16,6 +16,11 @@
   "cancel": "Cancel",
 
   "add": "Add",
+  "addClassroomDetails": "Classroom details",
+  "addClassroomName": "Classroom name",
+  "addClassroomTotalDesks": "Total desks",
+  "addClassroomLayoutTypeDescription": "Select the layout type of the classroom",
+  "addClassroomLayoutType": "Layout type",
 
   "delete": "Delete",
   "deleteDialogTitleClassroom": "Delete classroom",

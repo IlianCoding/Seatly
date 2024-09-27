@@ -16,6 +16,11 @@
   "cancel": "Stornieren",
 
   "add": "Hinzufügen",
+  "addClassroomDetails": "Klassenzimmerdetails",
+  "addClassroomName": "Klassenzimmername",
+  "addClassroomTotalDesks": "Gesamtzahl der Schreibtische",
+  "addClassroomLayoutTypeDescription": "Wählen Sie den Layouttyp des Klassenzimmers",
+  "addClassroomLayoutType": "Layouttyp",
 
   "delete": "Löschen",
   "deleteDialogTitleClassroom": "Klassenzimmer löschen",

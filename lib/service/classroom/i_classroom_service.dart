@@ -3,6 +3,7 @@ import 'package:seatly/ui/model/classroomdetail_model.dart';
 
 abstract class IClassroomService {
   Future<List<Classroom>> getAllClassrooms();
+  Future<List<String>> getAllClassroomIds();
   Future<ClassroomDetailsModel> getClassroomWithStudents(String classroomId);
 
   Future<void> addClassroom(Classroom classroom);

@@ -221,8 +221,8 @@ void main() {
       expect(classrooms[2].id, 'classroom3');
       expect(classrooms[2].sortingOptions.selectedOptions.contains(
           SortingOption.avoidSameNationality), true);
-      expect(classrooms[1].desks[1].position.row, 1);
-      expect(classrooms[1].desks[1].position.column, 2);
+      expect(classrooms[1].desks[1].position?.row, 1);
+      expect(classrooms[1].desks[1].position?.column, 2);
     });
 
     test('Saves the classroom given correctly.', () async {

@@ -16,6 +16,11 @@
   "cancel": "Cancelar",
 
   "add": "Agregar",
+  "addClassroomDetails": "Detalles del aula",
+  "addClassroomName": "Nombre del aula",
+  "addClassroomTotalDesks": "Total de escritorios",
+  "addClassroomLayoutTypeDescription": "Seleccione el tipo de diseño del aula",
+  "addClassroomLayoutType": "Tipo de diseño",
 
   "delete": "Eliminar",
   "deleteDialogTitleClassroom": "Eliminar aula",

@@ -8,13 +8,13 @@ part 'desk.g.dart';
 @JsonSerializable(explicitToJson: true)
 class Desk {
   final String id;
-  final Position position;
+  Position? position;
   String? assignedStudentId;
   String? previousStudentId;
 
   Desk({
     required this.id,
-    required this.position,
+    this.position,
     this.assignedStudentId,
     this.previousStudentId,
   });

@@ -3,19 +3,18 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:seatly/domain/configuration/layoutType/layout_type.dart';
 import 'package:seatly/domain/configuration/sortingOptions/different_sorting_options.dart';
 import 'package:seatly/domain/desk.dart';
-import 'package:seatly/domain/student.dart';
 
 part 'classroom.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Classroom {
-  final String id;
-  final String name;
+  String id;
+  String name;
   @JsonKey(name: 'layoutType')
   LayoutType layoutType;
-  final List<Desk> desks;
+  List<Desk> desks;
   @JsonKey(name: 'studentIds')
-  final List<String> studentIds;
+  List<String> studentIds;
   @JsonKey(name: 'sortingOptions')
   DifferentSortingOptions sortingOptions;
 
@@ -28,12 +27,69 @@ class Classroom {
     DifferentSortingOptions? sortingOptions,
   }) : sortingOptions = sortingOptions ?? DifferentSortingOptions();
 
-  void updateLayoutStrategy(LayoutType type) {
-    layoutType = type;
+  Classroom copyWith({
+    String? id,
+    String? name,
+    LayoutType? layoutType,
+    List<Desk>? desks,
+    List<String>? studentIds,
+    DifferentSortingOptions? sortingOptions,
+  }) {
+    return Classroom(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      layoutType: layoutType ?? this.layoutType,
+      desks: desks ?? this.desks,
+      studentIds: studentIds ?? this.studentIds,
+      sortingOptions: sortingOptions ?? this.sortingOptions,
+    );
   }
 
-  void updateSortingOptions(DifferentSortingOptions options) {
-    sortingOptions = options;
+  void addDesk(Desk desk){
+    desks.add(desk);
+  }
+
+  void addStudent(String studentId){
+    studentIds.add(studentId);
+  }
+
+  void updateName(String updatedName){
+    name = updatedName;
+  }
+
+  void updateLayoutStrategy(LayoutType updatedType) {
+    layoutType = updatedType;
+  }
+
+  void updateDesks(List<Desk> updatedDesks){
+    for(var updatedDesk in updatedDesks){
+      final index = desks.indexWhere((desk) => desk.id == updatedDesk.id);
+      if(index != -1){
+        desks[index] = updatedDesk;
+      } else {
+        desks.add(updatedDesk);
+      }
+    }
+  }
+
+  void updateStudentIds(List<String> updatedStudentIds) {
+    for (var updatedStudentId in updatedStudentIds) {
+      if (!studentIds.contains(updatedStudentId)) {
+        studentIds.add(updatedStudentId);
+      }
+    }
+  }
+
+  void updateSortingOptions(DifferentSortingOptions updatedOptions) {
+    sortingOptions = updatedOptions;
+  }
+
+  void removeDesk(String deskId){
+    desks.removeWhere((desk) => desk.id == deskId);
+  }
+
+  void removeStudent(String studentId){
+    studentIds.remove(studentId);
   }
 
   void clearAssignments() {
@@ -41,23 +97,6 @@ class Classroom {
       desk.clearAssignment();
     }
     studentIds.clear();
-  }
-
-  List<Student> getStudents(List<Student> studentList) {
-    return studentIds
-        .map((studentId) => studentList.firstWhere(
-          (student) => student.id == studentId,
-      orElse: () => Student(
-        id: '',
-        firstName: '',
-        lastName: '',
-        nationality: '',
-        imageUri: '',
-        birthDate: DateTime.now(),
-      ),
-    ))
-        .where((student) => student.id.isNotEmpty)
-        .toList();
   }
 
   factory Classroom.fromJson(Map<String, dynamic> json) => _$ClassroomFromJson(json);
