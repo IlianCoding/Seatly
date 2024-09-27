@@ -21,6 +21,11 @@
   "addClassroomTotalDesks": "Gesamtzahl der Schreibtische",
   "addClassroomLayoutTypeDescription": "Wählen Sie den Layouttyp des Klassenzimmers",
   "addClassroomLayoutType": "Layouttyp",
+  "addClassroomSuccess": "Klassenzimmer erfolgreich hinzugefügt",
+  "addClassroomUnsuccessful": "Klassenzimmer konnte nicht hinzugefügt werden",
+  "slideTotalColumns": "Gesamtspalten",
+  "slideTotalStudentsPerDesk": "Gesamtzahl der Schüler pro Schreibtisch",
+  "slideTotalPlacesInTheMiddle": "Gesamtzahl der Plätze in der Mitte",
 
   "delete": "Löschen",
   "deleteDialogTitleClassroom": "Klassenzimmer löschen",

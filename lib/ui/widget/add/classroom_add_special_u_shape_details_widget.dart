@@ -2,37 +2,57 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:ionicons/ionicons.dart';
 
 import 'package:seatly/ui/providers/viewmodel_providers.dart';
-import 'package:seatly/ui/screen/add_screens/add_classroom_layout_type.dart';
+import 'package:seatly/ui/screen/home_screen.dart';
 
-class AddClassroomNameScreen extends HookConsumerWidget {
-  const AddClassroomNameScreen({super.key});
+class AddSpecialUShapeDetailsWidget extends HookConsumerWidget {
+  final String label;
+  final String path;
+  final Color color;
+
+  const AddSpecialUShapeDetailsWidget({super.key, required this.label, required this.path, required this.color});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.watch(classroomAddPageViewModel.notifier);
-    final nameController = useTextEditingController();
-    final deskCount = useState(viewModel.getDeskCount());
+    final columnCount = useState(viewModel.getColumnCount());
+
+    void showSuccessNotification(bool success) {
+      if(success) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(AppLocalizations.of(context)!.addClassroomSuccess),
+            backgroundColor: Colors.green,
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(AppLocalizations.of(context)!.addClassroomUnsuccessful),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.purple.shade200,
-        leading: IconButton(
-            onPressed: () {
-              viewModel.reset();
-              Navigator.pop(context);
-            }, 
-            icon: const Icon(Icons.arrow_back_ios)
+        appBar: AppBar(
+          backgroundColor: color,
+          leading: IconButton(
+              onPressed: () {
+                viewModel.reset();
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back_ios)
+          ),
         ),
-      ),
         body: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [Colors.purple.shade200, Colors.white]
+                  colors: [color, Colors.white]
               )
           ),
           child: Column(
@@ -45,7 +65,7 @@ class AddClassroomNameScreen extends HookConsumerWidget {
                       color: Colors.white,
                       shape: BoxShape.circle
                   ),
-                  child: Icon(Ionicons.book_outline, size: 80, color: Colors.purple.shade200)
+                  child: Image.asset(path, fit: BoxFit.contain, width: 100, height: 100)
               ),
               const SizedBox(height: 50),
               Padding(
@@ -63,45 +83,32 @@ class AddClassroomNameScreen extends HookConsumerWidget {
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text(
-                                    AppLocalizations.of(context)!.addClassroomDetails,
-                                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)
-                                ),
-                                const SizedBox(height: 20),
-                                TextField(
-                                  controller: nameController,
-                                  decoration: InputDecoration(
-                                      labelText: AppLocalizations.of(context)!.addClassroomName,
-                                      border: const OutlineInputBorder()
-                                  ),
-                                ),
-                                const SizedBox(height: 40),
                                 Card(
                                   elevation: 4,
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20.0)
+                                      borderRadius: BorderRadius.circular(20.0)
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Text(AppLocalizations.of(context)!.addClassroomTotalDesks, style: const TextStyle(fontSize: 18)),
-                                        const SizedBox(height: 10),
-                                        Text('${deskCount.value?.toInt() ?? 0}', style: const TextStyle(fontSize: 14)),
-                                        Slider(
-                                            value: deskCount.value ?? 0.0,
-                                            min: 0,
-                                            max: 50,
-                                            label: deskCount.value?.toInt().toString(),
-                                            activeColor: Colors.purple.shade200,
-                                            inactiveColor: Colors.purple.shade100,
-                                            onChanged: (value) {
-                                              deskCount.value = value;
-                                            }
-                                        ),
-                                      ],
-                                    )
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(label, style: const TextStyle(fontSize: 18)),
+                                          const SizedBox(height: 10),
+                                          Text('${columnCount.value?.toInt() ?? 0}', style: const TextStyle(fontSize: 14)),
+                                          Slider(
+                                              value: columnCount.value ?? 0.0,
+                                              min: 0,
+                                              max: 15,
+                                              label: columnCount.value?.toInt().toString(),
+                                              activeColor: color.withOpacity(0.8),
+                                              inactiveColor: color.withOpacity(0.5),
+                                              onChanged: (value) {
+                                                columnCount.value = value;
+                                              }
+                                          ),
+                                        ],
+                                      )
                                   ),
                                 ),
                                 const SizedBox(height: 40),
@@ -118,13 +125,13 @@ class AddClassroomNameScreen extends HookConsumerWidget {
                           height: 50,
                           child: ElevatedButton(
                               onPressed: () {
-                                viewModel.setClassroomName(nameController.text);
-                                viewModel.setDeskCount(deskCount.value!.toInt());
+                                viewModel.setColumnCount(columnCount.value?.toInt() ?? 0);
+                                showSuccessNotification(viewModel.addClassroom() as bool);
 
                                 Navigator.push(
                                     context,
                                     PageRouteBuilder(
-                                        pageBuilder: (context, animation, secondaryAnimation) => const AddClassroomLayoutTypeScreen(),
+                                        pageBuilder: (context, animation, secondaryAnimation) => const HomeScreen(),
                                         transitionsBuilder: (context, animation, secondaryAnimation, child) {
                                           const begin = Offset(1.0, 0.0);
                                           const end = Offset.zero;
@@ -140,7 +147,7 @@ class AddClassroomNameScreen extends HookConsumerWidget {
                               },
                               style: ElevatedButton.styleFrom(
                                   padding: const EdgeInsets.symmetric(vertical: 16.0),
-                                  backgroundColor: Colors.purple.shade200,
+                                  backgroundColor: color,
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
                                   elevation: 12.0,
                                   shadowColor: Colors.black.withOpacity(0.9)

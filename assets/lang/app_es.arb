@@ -21,6 +21,11 @@
   "addClassroomTotalDesks": "Total de escritorios",
   "addClassroomLayoutTypeDescription": "Seleccione el tipo de diseño del aula",
   "addClassroomLayoutType": "Tipo de diseño",
+  "addClassroomSuccess": "Aula agregada con éxito",
+  "addClassroomUnsuccessful": "No se pudo agregar el aula",
+  "slideTotalColumns": "Total de columnas",
+  "slideTotalStudentsPerDesk": "Total de estudiantes por escritorio",
+  "slideTotalPlacesInTheMiddle": "Total de lugares en el medio",
 
   "delete": "Eliminar",
   "deleteDialogTitleClassroom": "Eliminar aula",

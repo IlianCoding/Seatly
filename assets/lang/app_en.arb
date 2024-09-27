@@ -21,6 +21,11 @@
   "addClassroomTotalDesks": "Total desks",
   "addClassroomLayoutTypeDescription": "Select the layout type of the classroom",
   "addClassroomLayoutType": "Layout type",
+  "addClassroomSuccess": "Classroom added successfully",
+  "addClassroomUnsuccessful": "Could not add classroom",
+  "slideTotalColumns": "Total columns",
+  "slideTotalStudentsPerDesk": "Total students per desk",
+  "slideTotalPlacesInTheMiddle": "Total places in the middle",
 
   "delete": "Delete",
   "deleteDialogTitleClassroom": "Delete classroom",

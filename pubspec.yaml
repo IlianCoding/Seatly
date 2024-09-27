@@ -40,17 +40,11 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.1
 
 
-flutter_launcher_icons:
-  android: true
-  ios: true
-  image_path: "assets/images/logo.png"
-  remove_alpha_ios: true
-
-
 flutter:
   generate: true
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/icons/
     - assets/lang/
     - assets/raw/

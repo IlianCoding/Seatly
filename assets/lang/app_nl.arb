@@ -21,6 +21,11 @@
   "addClassroomTotalDesks": "Totaal bureaus",
   "addClassroomLayoutTypeDescription": "Selecteer het lay-outtype van het klaslokaal",
   "addClassroomLayoutType": "Lay-outtype",
+  "addClassroomSuccess": "Klaslokaal succesvol toegevoegd",
+  "addClassroomUnsuccessful": "Klaslokaal kon niet worden toegevoegd",
+  "slideTotalColumns": "Totaal kolommen",
+  "slideTotalStudentsPerDesk": "Totaal studenten per bureau",
+  "slideTotalPlacesInTheMiddle": "Totaal plaatsen in het midden",
 
   "delete": "Verwijderen",
   "deleteDialogTitleClassroom": "Klaslokaal verwijderen",

@@ -21,6 +21,11 @@
   "addClassroomTotalDesks": "Nombre total de bureaux",
   "addClassroomLayoutTypeDescription": "Sélectionnez le type de disposition de la salle de classe",
   "addClassroomLayoutType": "Type de disposition",
+  "addClassroomSuccess": "Salle de classe ajoutée avec succès",
+  "addClassroomUnsuccessful": "Impossible d'ajouter la salle de classe",
+  "slideTotalColumns": "Nombre total de colonnes",
+  "slideTotalStudentsPerDesk": "Nombre total d'élèves par bureau",
+  "slideTotalPlacesInTheMiddle": "Nombre total de places au milieu",
 
   "delete": "Supprimer",
   "deleteDialogTitleClassroom": "Supprimer salle de classe",
