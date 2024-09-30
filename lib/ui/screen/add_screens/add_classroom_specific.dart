@@ -15,6 +15,57 @@ class AddClassroomSpecific extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.watch(classroomAddPageViewModel.notifier);
 
+    void showSuccessNotification() async{
+      bool success = await viewModel.addClassroom();
+      if(success) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(AppLocalizations.of(context)!.addClassroomSuccess),
+            backgroundColor: Colors.green,
+          ),
+        );
+        Navigator.pushAndRemoveUntil(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) => const HomeScreen(),
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                const begin = Offset(1.0, 0.0);
+                const end = Offset.zero;
+                const curve = Curves.ease;
+
+                var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                var offsetAnimation = animation.drive(tween);
+
+                return SlideTransition(position: offsetAnimation, child: child);
+              },
+            ), (route) => false
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(AppLocalizations.of(context)!.addClassroomUnsuccessful),
+            backgroundColor: Colors.red,
+          ),
+        );
+        Navigator.pushAndRemoveUntil(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) => const HomeScreen(),
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                const begin = Offset(1.0, 0.0);
+                const end = Offset.zero;
+                const curve = Curves.ease;
+
+                var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                var offsetAnimation = animation.drive(tween);
+
+                return SlideTransition(position: offsetAnimation, child: child);
+              },
+            ), (route) => false
+        );
+      }
+    }
+
     if(viewModel.getLayoutType() != null) {
       switch(viewModel.getLayoutType()) {
         case LayoutType.rowByRow:
@@ -45,8 +96,8 @@ class AddClassroomSpecific extends HookConsumerWidget {
               color: Colors.green,
           );
         case LayoutType.uShape:
-          viewModel.addClassroom();
-          return const HomeScreen();
+          showSuccessNotification();
+          break;
         case LayoutType.specialUShape:
           return AddSpecialUShapeDetailsWidget(
               label: AppLocalizations.of(context)!.slideTotalPlacesInTheMiddle,

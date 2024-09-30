@@ -12,7 +12,6 @@ class ClassroomHomepageViewModel extends StateNotifier<AsyncValue<List<Classroom
 
   Future<void> loadClassrooms() async {
     try {
-      await classroomService.initializeData();
       final classrooms = await classroomService.getAllClassrooms();
       state = AsyncData(classrooms);
     } catch (e) {

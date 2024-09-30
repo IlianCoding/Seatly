@@ -38,6 +38,12 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    ref.read(classroomHomepageViewModel.notifier).loadClassrooms();
+  }
+
+  @override
   void dispose() {
     searchController.dispose();
     super.dispose();

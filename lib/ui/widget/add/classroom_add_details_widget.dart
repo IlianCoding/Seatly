@@ -125,25 +125,31 @@ class AddDetailsWidget extends HookConsumerWidget {
                           width: 150,
                           height: 50,
                           child: ElevatedButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 onSelect;
-                                showSuccessNotification(viewModel.addClassroom() as bool);
+                                bool successFullSave = await viewModel.addClassroom();
 
-                                Navigator.push(
-                                    context,
-                                    PageRouteBuilder(
-                                        pageBuilder: (context, animation, secondaryAnimation) => const HomeScreen(),
-                                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                                          const begin = Offset(1.0, 0.0);
-                                          const end = Offset.zero;
-                                          const curve = Curves.ease;
+                                if(successFullSave){
+                                  showSuccessNotification(true);
+                                } else {
+                                  showSuccessNotification(false);
+                                }
 
-                                          var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-                                          var offsetAnimation = animation.drive(tween);
+                                Navigator.pushAndRemoveUntil(
+                                  context,
+                                  PageRouteBuilder(
+                                    pageBuilder: (context, animation, secondaryAnimation) => const HomeScreen(),
+                                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                      const begin = Offset(1.0, 0.0);
+                                      const end = Offset.zero;
+                                      const curve = Curves.ease;
 
-                                          return SlideTransition(position: offsetAnimation, child: child);
-                                        }
-                                    )
+                                      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                                      var offsetAnimation = animation.drive(tween);
+
+                                      return SlideTransition(position: offsetAnimation, child: child);
+                                    },
+                                  ), (route) => false
                                 );
                               },
                               style: ElevatedButton.styleFrom(
