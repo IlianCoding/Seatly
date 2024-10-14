@@ -27,6 +27,7 @@ class AddClassroomNameScreen extends HookConsumerWidget {
             icon: const Icon(Icons.arrow_back_ios)
         ),
       ),
+        resizeToAvoidBottomInset: true,
         body: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(

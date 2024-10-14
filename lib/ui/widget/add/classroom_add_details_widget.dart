@@ -10,14 +10,14 @@ class AddDetailsWidget extends HookConsumerWidget {
   final String label;
   final String path;
   final Color color;
-  final Function? onSelect;
+  final Function(int)? onSelect;
 
   const AddDetailsWidget({super.key, required this.label, required this.path, required this.onSelect, required this.color});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.watch(classroomAddPageViewModel.notifier);
-    final columnCount = useState(viewModel.getColumnCount());
+    final rowCount = useState(viewModel.getRowCount());
 
     void showSuccessNotification(bool success) {
       if(success) {
@@ -96,16 +96,16 @@ class AddDetailsWidget extends HookConsumerWidget {
                                         children: [
                                           Text(label, style: const TextStyle(fontSize: 18)),
                                           const SizedBox(height: 10),
-                                          Text('${columnCount.value?.toInt() ?? 0}', style: const TextStyle(fontSize: 14)),
+                                          Text('${rowCount.value?.toInt() ?? 0}', style: const TextStyle(fontSize: 14)),
                                           Slider(
-                                              value: columnCount.value ?? 0.0,
+                                              value: rowCount.value ?? 0.0,
                                               min: 0,
                                               max: 15,
-                                              label: columnCount.value?.toInt().toString(),
+                                              label: rowCount.value?.toInt().toString(),
                                               activeColor: color.withOpacity(0.8),
                                               inactiveColor: color.withOpacity(0.5),
                                               onChanged: (value) {
-                                                columnCount.value = value;
+                                                rowCount.value = value;
                                               }
                                           ),
                                         ],
@@ -126,7 +126,7 @@ class AddDetailsWidget extends HookConsumerWidget {
                           height: 50,
                           child: ElevatedButton(
                               onPressed: () async {
-                                onSelect;
+                                onSelect!(rowCount.value!.toInt());
                                 bool successFullSave = await viewModel.addClassroom();
 
                                 if(successFullSave){

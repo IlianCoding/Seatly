@@ -8,15 +8,17 @@ import 'package:seatly/ui/screen/home_screen.dart';
 
 class AddSpecialUShapeDetailsWidget extends HookConsumerWidget {
   final String label;
+  final String secondLabel;
   final String path;
   final Color color;
 
-  const AddSpecialUShapeDetailsWidget({super.key, required this.label, required this.path, required this.color});
+  const AddSpecialUShapeDetailsWidget({super.key, required this.label, required this.secondLabel, required this.path, required this.color});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.watch(classroomAddPageViewModel.notifier);
-    final columnCount = useState(viewModel.getColumnCount());
+    final rowCount = useState(viewModel.getRowCount());
+    final deskAmount = useState(viewModel.getSpecialDeskCount());
 
     void showSuccessNotification(bool success) {
       if(success) {
@@ -95,16 +97,31 @@ class AddSpecialUShapeDetailsWidget extends HookConsumerWidget {
                                         children: [
                                           Text(label, style: const TextStyle(fontSize: 18)),
                                           const SizedBox(height: 10),
-                                          Text('${columnCount.value?.toInt() ?? 0}', style: const TextStyle(fontSize: 14)),
+                                          Text('${deskAmount.value?.toInt() ?? 0}', style: const TextStyle(fontSize: 14)),
                                           Slider(
-                                              value: columnCount.value ?? 0.0,
+                                              value: deskAmount.value ?? 0.0,
                                               min: 0,
                                               max: 15,
-                                              label: columnCount.value?.toInt().toString(),
+                                              label: deskAmount.value?.toInt().toString(),
                                               activeColor: color.withOpacity(0.8),
                                               inactiveColor: color.withOpacity(0.5),
                                               onChanged: (value) {
-                                                columnCount.value = value;
+                                                deskAmount.value = value;
+                                              }
+                                          ),
+                                          const SizedBox(height: 20),
+                                          Text(secondLabel, style: const TextStyle(fontSize: 18)),
+                                          const SizedBox(height: 10),
+                                          Text('${rowCount.value?.toInt() ?? 0}', style: const TextStyle(fontSize: 14)),
+                                          Slider(
+                                              value: rowCount.value ?? 0.0,
+                                              min: 0,
+                                              max: useState(viewModel.getDeskCount()).value!.toDouble(),
+                                              label: rowCount.value?.toInt().toString(),
+                                              activeColor: color.withOpacity(0.8),
+                                              inactiveColor: color.withOpacity(0.5),
+                                              onChanged: (value) {
+                                                rowCount.value = value;
                                               }
                                           ),
                                         ],
@@ -125,7 +142,8 @@ class AddSpecialUShapeDetailsWidget extends HookConsumerWidget {
                           height: 50,
                           child: ElevatedButton(
                               onPressed: () async {
-                                viewModel.setColumnCount(columnCount.value?.toInt() ?? 0);
+                                viewModel.setSpecialDeskCount(deskAmount.value?.toInt() ?? 0);
+                                viewModel.setRowCount(rowCount.value?.toInt() ?? 0);
                                 bool succesFullSave = await viewModel.addClassroom();
 
                                 if(succesFullSave) {

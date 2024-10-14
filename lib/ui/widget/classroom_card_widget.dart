@@ -38,10 +38,10 @@ class ClassroomCard extends StatelessWidget {
           const SizedBox(width: 16.0),
           Expanded(
               child: Text(
-            classroom.name,
-            style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
+              classroom.name,
+              style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500, color: Colors.black),
           )),
-          const Icon(Icons.arrow_forward, size: 20)
+          const Icon(Icons.arrow_forward, size: 20, color: Colors.black)
         ],
       ),
     );

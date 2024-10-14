@@ -5,7 +5,7 @@ class ClassroomAddModel {
   final String? name;
   final LayoutType? layoutType;
   final int? amountOfDesks;
-  final int? amountOfColumns;
+  final int? amountOfRows;
   final int? amountOfStudentsPerDesk;
   final int? amountOfSpecialDesks;
 
@@ -14,7 +14,7 @@ class ClassroomAddModel {
     this.name,
     this.layoutType,
     this.amountOfDesks,
-    this.amountOfColumns,
+    this.amountOfRows,
     this.amountOfStudentsPerDesk,
     this.amountOfSpecialDesks
   });
@@ -24,18 +24,18 @@ class ClassroomAddModel {
     String? name,
     LayoutType? layoutType,
     int? amountOfDesks,
-    int? amountOfColumns,
+    int? amountOfRows,
     int? amountOfStudentsPerDesk,
     int? amountOfSpecialDesks
   }) {
     return ClassroomAddModel(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      layoutType: layoutType ?? this.layoutType,
-      amountOfDesks: amountOfDesks ?? this.amountOfDesks,
-      amountOfColumns: amountOfColumns ?? this.amountOfColumns,
-      amountOfStudentsPerDesk: amountOfStudentsPerDesk ?? this.amountOfStudentsPerDesk,
-      amountOfSpecialDesks: amountOfSpecialDesks ?? this.amountOfSpecialDesks
+        id: id ?? this.id,
+        name: name ?? this.name,
+        layoutType: layoutType ?? this.layoutType,
+        amountOfDesks: amountOfDesks ?? this.amountOfDesks,
+        amountOfRows: amountOfRows ?? this.amountOfRows,
+        amountOfStudentsPerDesk: amountOfStudentsPerDesk ?? this.amountOfStudentsPerDesk,
+        amountOfSpecialDesks: amountOfSpecialDesks ?? this.amountOfSpecialDesks
     );
   }
 }

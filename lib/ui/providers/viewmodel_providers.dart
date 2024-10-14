@@ -19,7 +19,8 @@ final classroomAddPageViewModel = StateNotifierProvider<ClassroomAddPageViewMode
 
 final classroomDetailPageViewModel = StateNotifierProvider.family<ClassroomDetailPageViewModel, AsyncValue<ClassroomDetailsModel>, String>((ref, classroomId) {
   final classroomService = ref.read(classroomServiceProvider);
-  final viewModel = ClassroomDetailPageViewModel(classroomService);
+  final studentService = ref.read(studentServiceProvider);
+  final viewModel = ClassroomDetailPageViewModel(classroomService, studentService);
   viewModel.loadClassroomDetails(classroomId);
   return viewModel;
 });

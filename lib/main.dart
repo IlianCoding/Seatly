@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-
 import 'package:seatly/core/injection.dart';
 import 'package:seatly/ui/providers/settings_providers.dart';
 import 'package:seatly/ui/screen/add_screens/add_classroom_name_screen.dart';
@@ -75,11 +74,17 @@ class MyApp extends ConsumerWidget {
         '/': (context) => const SplashScreen(),
         '/home': (context) => const HomeScreen(),
         '/settings': (context) => const SettingsScreen(),
+        // '/classroomLayoutView': (context) => const ClassroomLayoutViewScreen(),
         '/classroomDetail': (context) {
           final route = ModalRoute.of(context)!.settings.arguments as String;
           return ClassroomDetailScreen(classroomId: route);
         },
-        '/addClassroomName': (context) => const AddClassroomNameScreen()
+        // '/studentDetail': (context) {
+        //   final route = ModalRoute.of(context)!.settings.arguments as String;
+        //   return StudentDetailScreen(studentId: route);
+        // },
+        '/addClassroomName': (context) => const AddClassroomNameScreen(),
+        // '/addStudent': (context) => const AddStudentScreen()
       },
     );
   }

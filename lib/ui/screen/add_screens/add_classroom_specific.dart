@@ -70,10 +70,10 @@ class AddClassroomSpecific extends HookConsumerWidget {
       switch(viewModel.getLayoutType()) {
         case LayoutType.rowByRow:
           return AddDetailsWidget(
-              label: AppLocalizations.of(context)!.slideTotalColumns,
+              label: AppLocalizations.of(context)!.slideTotalRows,
               path: 'assets/images/rowbyrow.png',
               onSelect: (value) {
-                viewModel.setColumnCount(value);
+                viewModel.setRowCount(value);
               },
               color: Colors.orange,
           );
@@ -101,6 +101,7 @@ class AddClassroomSpecific extends HookConsumerWidget {
         case LayoutType.specialUShape:
           return AddSpecialUShapeDetailsWidget(
               label: AppLocalizations.of(context)!.slideTotalPlacesInTheMiddle,
+              secondLabel: AppLocalizations.of(context)!.slideTotalRowsInTheMiddle,
               path: 'assets/images/specialUShape.png',
               color: Colors.blue,
           );

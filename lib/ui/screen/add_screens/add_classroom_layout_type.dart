@@ -47,9 +47,9 @@ class AddClassroomLayoutTypeScreen extends HookConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(AppLocalizations.of(context)!.addClassroomLayoutType, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              Text(AppLocalizations.of(context)!.addClassroomLayoutType, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black)),
               const SizedBox(height: 10),
-              Text(AppLocalizations.of(context)!.addClassroomLayoutTypeDescription, style: const TextStyle(fontSize: 16, color: Colors.grey)),
+              Text(AppLocalizations.of(context)!.addClassroomLayoutTypeDescription, style: const TextStyle(fontSize: 16, color: Colors.black)),
               const SizedBox(height: 30),
 
               Expanded(
