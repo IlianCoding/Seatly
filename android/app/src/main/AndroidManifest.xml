@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.seatly">
+    package="com.carevantage.seatly">
    <application
         android:label="Seatly"
         android:name="${applicationName}"

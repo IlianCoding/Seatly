@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:seatly/ui/widget/classroom_detail/classroom_detail_student_card.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 import 'package:seatly/domain/configuration/layoutType/layout_type.dart';
 import 'package:seatly/ui/widget/info/info_description_coachmark.dart';
 import 'package:seatly/ui/providers/viewmodel_providers.dart';
 import 'package:seatly/ui/widget/classroom_detail/classroom_detail_general_info_card.dart';
-import 'package:seatly/ui/widget/classroom_detail/classroom_detail_student_card.dart';
 import 'package:seatly/ui/widget/delete_confirmation_dialog.dart';
 
 final searchStudentQueryProvider = StateProvider<String>((ref) => '');
@@ -29,7 +29,7 @@ class ClassroomDetailScreenState extends ConsumerState<ClassroomDetailScreen> {
   TutorialCoachMark? tutorialCoachMark;
   List<TargetFocus> targets = [];
 
-  GlobalKey startShuffelingKey = GlobalKey();
+  GlobalKey startShufflingKey = GlobalKey();
   GlobalKey editingButtonKey = GlobalKey();
   GlobalKey importButtonKey = GlobalKey();
   GlobalKey searchFieldKey = GlobalKey();
@@ -38,8 +38,11 @@ class ClassroomDetailScreenState extends ConsumerState<ClassroomDetailScreen> {
   void initState() {
     super.initState();
     searchController = TextEditingController();
+    nameController = TextEditingController();
     searchController.addListener(() {
-      ref.read(searchStudentQueryProvider.notifier).state =
+      ref
+          .read(searchStudentQueryProvider.notifier)
+          .state =
           searchController.text;
     });
   }
@@ -47,14 +50,17 @@ class ClassroomDetailScreenState extends ConsumerState<ClassroomDetailScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    ref
-        .read(classroomDetailPageViewModel(widget.classroomId).notifier)
+    final classroomDetails = ref.read(
+        classroomDetailPageViewModel(widget.classroomId));
+    nameController.text = classroomDetails.value?.classroom.name ?? '';
+    ref.read(classroomDetailPageViewModel(widget.classroomId).notifier)
         .loadClassroomDetails(widget.classroomId);
   }
 
   @override
   void dispose() {
     searchController.dispose();
+    nameController.dispose();
     super.dispose();
   }
 
@@ -82,7 +88,7 @@ class ClassroomDetailScreenState extends ConsumerState<ClassroomDetailScreen> {
     targets.add(
       TargetFocus(
         identify: "AddButton",
-        keyTarget: startShuffelingKey,
+        keyTarget: startShufflingKey,
         contents: [
           TargetContent(
             align: ContentAlign.top,
@@ -147,14 +153,17 @@ class ClassroomDetailScreenState extends ConsumerState<ClassroomDetailScreen> {
     tutorialCoachMark = TutorialCoachMark(
       targets: targets,
       colorShadow: Colors.black,
-    )..show(context: context);
+    )
+      ..show(context: context);
   }
 
   @override
   Widget build(BuildContext context) {
-    final classroomDetails = ref.watch(classroomDetailPageViewModel(widget.classroomId));
+    final classroomDetails = ref.watch(
+        classroomDetailPageViewModel(widget.classroomId));
     final editMode = ref.watch(editModeProvider);
     final searchQuery = ref.watch(searchStudentQueryProvider);
+
     Map<String, dynamic> layoutTypeDetails = (() {
       switch (classroomDetails.value?.classroom.layoutType) {
         case LayoutType.rowByRow:
@@ -228,13 +237,15 @@ class ClassroomDetailScreenState extends ConsumerState<ClassroomDetailScreen> {
                 bottomRight: Radius.circular(50),
               ),
             ),
-            padding: const EdgeInsets.only(bottom: 32, left: 48, right: 48, top: 16),
+            padding: const EdgeInsets.only(
+                bottom: 32, left: 48, right: 48, top: 16),
             child: Row(
               children: [
                 CircleAvatar(
                   radius: 40,
                   backgroundColor: layoutTypeDetails['color'],
-                  child: Image.asset(layoutTypeDetails['image'], width: 65, height: 65),
+                  child: Image.asset(
+                      layoutTypeDetails['image'], width: 65, height: 65),
                 ),
                 const SizedBox(width: 15),
                 Expanded(
@@ -244,7 +255,8 @@ class ClassroomDetailScreenState extends ConsumerState<ClassroomDetailScreen> {
                       editMode ? TextField(
                         controller: nameController,
                         decoration: InputDecoration(
-                          hintText: AppLocalizations.of(context)!.changeClassroomName,
+                          hintText: AppLocalizations.of(context)!
+                              .changeClassroomName,
                         ),
                         style: const TextStyle(
                           fontSize: 24,
@@ -252,7 +264,8 @@ class ClassroomDetailScreenState extends ConsumerState<ClassroomDetailScreen> {
                           color: Colors.black,
                         ),
                       ) : Text(
-                        classroomDetails.value?.classroom.name ?? 'Classroom Details',
+                        classroomDetails.value?.classroom.name ??
+                            'Classroom Details',
                         style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -289,12 +302,17 @@ class ClassroomDetailScreenState extends ConsumerState<ClassroomDetailScreen> {
                       ),
                     ),
                     IconButton(
-                      icon: editMode ? const Icon(Icons.done_outlined) : const Icon(Icons.edit_outlined),
+                      icon: editMode
+                          ? const Icon(Icons.done_outlined)
+                          : const Icon(Icons.edit_outlined),
                       onPressed: () {
-                        if(editMode){
-                          ref.read(classroomDetailPageViewModel(widget.classroomId).notifier).updateClassroom();
+                        if (editMode) {
+                          ref.read(classroomDetailPageViewModel(
+                              widget.classroomId).notifier).updateClassroom();
                         }
-                        ref.read(editModeProvider.notifier).state = !editMode;
+                        ref
+                            .read(editModeProvider.notifier)
+                            .state = !editMode;
                       },
                     ),
                   ],
@@ -306,9 +324,11 @@ class ClassroomDetailScreenState extends ConsumerState<ClassroomDetailScreen> {
                   children: [
                     ClassroomDetailGeneralInfoCard(
                         color: Colors.redAccent,
-                        icon: const Icon(Icons.desk_outlined, color: Colors.redAccent),
+                        icon: const Icon(
+                            Icons.desk_outlined, color: Colors.redAccent),
                         title: AppLocalizations.of(context)!.totalDesks,
-                        explanation: classroomDetails.value?.classroom.desks.length.toString() ?? '0'),
+                        explanation: classroomDetails.value?.classroom.desks
+                            .length.toString() ?? '0'),
                     const SizedBox(height: 16),
                     GestureDetector(
                       onTap: () {
@@ -316,9 +336,11 @@ class ClassroomDetailScreenState extends ConsumerState<ClassroomDetailScreen> {
                       },
                       child: ClassroomDetailGeneralInfoCard(
                           color: Colors.orangeAccent,
-                          icon: const Icon(Icons.window_outlined, color: Colors.orangeAccent),
+                          icon: const Icon(Icons.window_outlined,
+                              color: Colors.orangeAccent),
                           title: AppLocalizations.of(context)!.layoutView,
-                          explanation: AppLocalizations.of(context)!.layoutViewDescription),
+                          explanation: AppLocalizations.of(context)!
+                              .layoutViewDescription),
                     ),
                     const SizedBox(height: 16),
                     GestureDetector(
@@ -327,9 +349,11 @@ class ClassroomDetailScreenState extends ConsumerState<ClassroomDetailScreen> {
                       },
                       child: ClassroomDetailGeneralInfoCard(
                           color: Colors.blueAccent,
-                          icon: const Icon(Icons.play_circle_outline, color: Colors.blueAccent),
+                          icon: const Icon(Icons.play_circle_outline,
+                              color: Colors.blueAccent),
                           title: AppLocalizations.of(context)!.seatStudents,
-                          explanation: AppLocalizations.of(context)!.seatStudentsDescription),
+                          explanation: AppLocalizations.of(context)!
+                              .seatStudentsDescription),
                     )
                   ],
                 )
@@ -349,72 +373,76 @@ class ClassroomDetailScreenState extends ConsumerState<ClassroomDetailScreen> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                TextField(
-                  key: searchFieldKey,
-                  controller: searchController,
-                  decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)!.searchBarStudent,
-                    prefixIcon: const Icon(Icons.search),
-                    border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0), // Adjusted padding
+                  child: SizedBox(
+                    height: 35, // Set a smaller height
+                    child: TextField(
+                      key: searchFieldKey,
+                      controller: searchController,
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(context)!.searchBarStudent,
+                        prefixIcon: const Icon(Icons.search),
+                        border: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-                Flexible(
-                    child: classroomDetails.when(
-                        data: (students) {
-                          final filteredStudents =
-                              students.students.where((student) {
-                            return student.fullName
-                                .toLowerCase()
-                                .contains(searchQuery.toLowerCase());
-                          }).toList();
-
-                          return ListView.builder(
-                              itemCount: filteredStudents.length,
-                              itemBuilder: (context, index) {
-                                final student = filteredStudents[index];
-                                return Slidable(
-                                  key: ValueKey(student.id),
-                                  endActionPane: ActionPane(
-                                      motion: const ScrollMotion(),
-                                      children: [
-                                        SlidableAction(
-                                          onPressed: (context) {
-                                            _showDeleteConfirmationDialog(
-                                                context, ref, student.id);
-                                          },
-                                          backgroundColor: Colors.red,
-                                          foregroundColor: Colors.white,
-                                          icon: Icons.delete_forever,
-                                          label: AppLocalizations.of(context)!
-                                              .delete,
-                                        ),
-                                      ]),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.pushNamed(context, '/studentDetail', arguments: student.id);
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 16.0, vertical: 8.0),
-                                      child: StudentCard(
-                                          studentName: student.fullName,
-                                          birthDate: student.birthDate.toString(),
-                                          imageUri: 'assets/images/empty_portrait.png',
-                                          color: layoutTypeDetails['color'].withOpacity(0.2)),
-                                    ),
-                                  ),
-                                );
-                              });
-                        },
-                        error: (error, stack) =>
-                            Center(child: Text('Error: $error')),
-                        loading: () =>
-                            const Center(child: CircularProgressIndicator())))
+                )
               ],
             ),
-          )
+          ),
+          Expanded(
+              child: classroomDetails.when(
+                  data: (classroomDetails) {
+                    final students = classroomDetails.students.where((student) {
+                      return student.fullName
+                          .toLowerCase()
+                          .contains(searchQuery.toLowerCase());
+                    }).toList();
+
+                    return ListView.builder(
+                        itemCount: students.length,
+                        itemBuilder: (context, index) {
+                          final student = students[index];
+                          return Slidable(
+                            key: ValueKey(student.id),
+                            endActionPane: ActionPane(
+                                motion: const ScrollMotion(),
+                                children: [
+                                  SlidableAction(
+                                    onPressed: (context) {
+                                      _showDeleteConfirmationDialog(
+                                          context, ref, student.id
+                                      );
+                                    },
+                                    backgroundColor: Colors.red,
+                                    foregroundColor: Colors.white,
+                                    icon: Icons.delete_forever,
+                                    label: AppLocalizations.of(context)!.delete,
+                                  )
+                                ]
+                            ),
+                            child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16.0,
+                                  vertical: 8.0
+                                ),
+                              child: StudentCard(
+                                  studentName: student.fullName,
+                                  birthDate: "${student.birthDate.day}-${student.birthDate.month}-${student.birthDate.year}",
+                                  imageUri: 'assets/images/empty_portrait.png',
+                                  color: layoutTypeDetails['color']
+                              ),
+                            ),
+                          );
+                        }
+                    );
+                  },
+                  error: (error, stack) => Center(child: Text('Error: $error')),
+                  loading: () => const Center(child: CircularProgressIndicator())
+              ))
         ],
       ),
     );

@@ -43,6 +43,7 @@
   "seatStudentsDescription": "Placez les élèves dans la salle de classe",
   "studentList": "Liste des élèves",
   "searchBarStudent": "Rechercher un élève",
+  "edit": "Modifier",
 
   "delete": "Supprimer",
   "deleteDialogTitleClassroom": "Supprimer salle de classe",

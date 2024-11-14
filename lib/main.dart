@@ -10,9 +10,13 @@ import 'package:seatly/ui/screen/detail_screens/classroom_details_screen.dart';
 import 'package:seatly/ui/screen/home_screen.dart';
 import 'package:seatly/ui/screen/settings_screens/settings_screen.dart';
 import 'package:seatly/ui/screen/splash_screen.dart';
+import 'package:seatly/service/classroom/i_classroom_service.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
+  IClassroomService classroomService = getIt<IClassroomService>();
+  classroomService.initializeData();
   runApp(
     const ProviderScope(
         child: MyApp()
