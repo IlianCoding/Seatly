@@ -361,7 +361,7 @@ class ClassroomDetailScreenState extends ConsumerState<ClassroomDetailScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(14.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -374,22 +374,35 @@ class ClassroomDetailScreenState extends ConsumerState<ClassroomDetailScreen> {
                 ),
                 const SizedBox(height: 10),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0), // Adjusted padding
-                  child: SizedBox(
-                    height: 35, // Set a smaller height
-                    child: TextField(
-                      key: searchFieldKey,
-                      controller: searchController,
-                      decoration: InputDecoration(
-                        labelText: AppLocalizations.of(context)!.searchBarStudent,
-                        prefixIcon: const Icon(Icons.search),
-                        border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: SizedBox(
+                          height: 35,
+                          child: TextField(
+                            key: searchFieldKey,
+                            controller: searchController,
+                            decoration: InputDecoration(
+                              labelText: AppLocalizations.of(context)!.searchBarStudent,
+                              prefixIcon: const Icon(Icons.search),
+                              border: const OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                      const SizedBox(width: 10),
+                      IconButton(
+                        icon: const Icon(Icons.add_circle_outline_outlined),
+                        onPressed: () {
+                          //TODO: Add functionality to add a student
+                        },
+                      ),
+                    ],
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -426,7 +439,7 @@ class ClassroomDetailScreenState extends ConsumerState<ClassroomDetailScreen> {
                             ),
                             child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0,
+                                  horizontal: 38.0,
                                   vertical: 8.0
                                 ),
                               child: StudentCard(
