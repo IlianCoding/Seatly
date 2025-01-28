@@ -48,6 +48,8 @@
   "delete": "Delete",
   "deleteDialogTitleClassroom": "Delete classroom",
   "deleteDialogContentClassroom": "Are you sure you want to delete this classroom?",
+  "deleteDialogTitleStudent": "Delete student",
+  "deleteDialogContentStudent": "Are you sure you want to delete this student?",
 
   "info": "Info",
   "addButtonIntro": "Click the button to add a classroom",
@@ -58,5 +60,9 @@
   "skip": "Skip",
   "next": "Next",
 
-  "searchBar": "Search classroom"
+  "searchBar": "Search classroom",
+  "classroomNameRequired": "Classroom name is required",
+  "classroomDesksRequired": "Total desks are required",
+  "classroomDesksInvalid": "Total desks are invalid",
+  "classroomDesksLessThanStudentCount": "Total desks must be greater than the total amount of students"
 }

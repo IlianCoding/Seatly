@@ -48,6 +48,8 @@
   "delete": "Supprimer",
   "deleteDialogTitleClassroom": "Supprimer salle de classe",
   "deleteDialogContentClassroom": "Voulez-vous vraiment supprimer cette salle de classe?",
+  "deleteDialogTitleStudent": "Supprimer élève",
+  "deleteDialogContentStudent": "Voulez-vous vraiment supprimer cet élève?",
 
   "info": "Info",
   "addButtonIntro": "Cliquez sur le bouton pour ajouter une salle de classe",
@@ -58,5 +60,9 @@
   "skip": "Passer",
   "next": "Suivant",
 
-  "searchBar": "Rechercher salle de classe"
+  "searchBar": "Rechercher salle de classe",
+  "classroomNameRequired": "Le nom de la salle de classe est obligatoire",
+  "classroomDesksRequired": "Le nombre total de bureaux est requis",
+  "classroomDesksInvalid": "Le nombre total de bureaux n'est pas valide",
+  "classroomDesksLessThanStudentCount": "Le nombre total de bureaux doit être supérieur au nombre total d'élèves"
 }

@@ -48,6 +48,8 @@
   "delete": "Verwijderen",
   "deleteDialogTitleClassroom": "Klaslokaal verwijderen",
   "deleteDialogContentClassroom": "Weet je zeker dat je dit klaslokaal wilt verwijderen?",
+  "deleteDialogTitleStudent": "Student verwijderen",
+  "deleteDialogContentStudent": "Weet je zeker dat je deze student wilt verwijderen?",
 
   "info": "Info",
   "addButtonIntro": "Klik op de knop om een klaslokaal toe te voegen",
@@ -58,5 +60,9 @@
   "skip": "Overslaan",
   "next": "Volgende",
 
-  "searchBar": "Zoek klaslokaal"
+  "searchBar": "Zoek klaslokaal",
+  "classroomNameRequired": "Klaslokaal naam is verplicht",
+  "classroomDesksRequired": "Totaal bureaus zijn verplicht",
+  "classroomDesksInvalid": "Totaal Azizments is ongeldig",
+  "classroomDesksLessThanStudentCount": "Totaal aantal banken moet groter zijn dan het totaal aantal studenten"
 }
