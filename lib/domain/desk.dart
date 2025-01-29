@@ -31,6 +31,10 @@ class Desk {
     assignedStudentId = null;
   }
 
+  void removeStudentUponDelete(String studentId) {
+    assignedStudentId = assignedStudentId == studentId ? null : assignedStudentId;
+  }
+
   Student? getAssignedStudent(Map<String, Student> studentMap) {
     return assignedStudentId != null ? studentMap[assignedStudentId!] : null;
   }

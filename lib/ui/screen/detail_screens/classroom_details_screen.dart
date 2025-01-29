@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:seatly/ui/widget/classroom_detail/classroom_detail_edit_dialog.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 import 'package:seatly/ui/widget/classroom_detail/classroom_detail_student_card.dart';
@@ -277,7 +278,14 @@ class ClassroomDetailScreenState extends ConsumerState<ClassroomDetailScreen> {
                         ),
                         IconButton(
                           icon: const Icon(Icons.edit),
-                          onPressed: () {},
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => ClassroomEditDialog(
+                                classroomId: widget.classroomId
+                              )
+                            );
+                          },
                         ),
                       ],
                     ),

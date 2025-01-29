@@ -14,6 +14,7 @@
   "enterYourFeedback": "Voer uw feedback in",
   "submit": "Verzenden",
   "cancel": "Annuleren",
+  "edit": "Bewerken",
 
   "add": "Toevoegen",
   "addClassroomDetails": "Klaslokaal details",
@@ -44,6 +45,7 @@
   "studentList": "Studentenlijst",
   "searchBarStudent": "Zoek student",
   "edit": "Bewerken",
+  "layoutExtra": "Extra instellingen",
 
   "delete": "Verwijderen",
   "deleteDialogTitleClassroom": "Klaslokaal verwijderen",
@@ -64,5 +66,11 @@
   "classroomNameRequired": "Klaslokaal naam is verplicht",
   "classroomDesksRequired": "Totaal bureaus zijn verplicht",
   "classroomDesksInvalid": "Totaal Azizments is ongeldig",
-  "classroomDesksLessThanStudentCount": "Totaal aantal banken moet groter zijn dan het totaal aantal studenten"
+  "classroomDesksLessThanStudentCount": "Totaal aantal banken moet groter zijn dan het totaal aantal studenten",
+  "amountOfRows": "Aantal rijen",
+  "amountOfStudentsPerDesk": "Aantal studenten per bureau",
+  "amountOfPlacesInTheMiddle": "Aantal plaatsen in het midden",
+  "invalidAmountOfRows": "Ongeldig aantal rijen",
+  "invalidAmountOfStudentsPerDesk": "Ongeldig aantal studenten per bureau",
+  "invalidAmountOfPlacesInTheMiddle": "Ongeldig aantal plaatsen in het midden"
 }

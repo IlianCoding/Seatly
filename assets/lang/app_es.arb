@@ -14,6 +14,7 @@
   "enterYourFeedback": "Ingrese sus comentarios",
   "submit": "Enviar",
   "cancel": "Cancelar",
+  "edit": "Editar",
 
   "add": "Agregar",
   "addClassroomDetails": "Detalles del aula",
@@ -34,6 +35,7 @@
   "studentList": "Lista de estudiantes",
   "searchBarStudent": "Buscar estudiante",
   "edit": "Editar",
+  "layoutExtra": "Configuraciones adicionales",
 
   "rowbyrow": "Fila por fila",
   "ushape": "Forma de U",
@@ -64,5 +66,11 @@
   "classroomNameRequired": "El nombre del aula es obligatorio",
   "classroomDesksRequired": "Se requieren escritorios totales",
   "classroomDesksInvalid": "El número de escritorios totales no es válido",
-  "classroomDesksLessThanStudentCount": "El número de escritorios debe ser mayor que el número total de estudiantes"
+  "classroomDesksLessThanStudentCount": "El número de escritorios debe ser mayor que el número total de estudiantes",
+  "amountOfRows": "Cantidad de filas",
+  "amountOfStudentsPerDesk": "Cantidad de estudiantes por escritorio",
+  "amountOfPlacesInTheMiddle": "Cantidad de lugares en el medio",
+  "invalidAmountOfRows": "Cantidad de filas no válida",
+  "invalidAmountOfStudentsPerDesk": "Cantidad de estudiantes por escritorio no válida",
+  "invalidAmountOfPlacesInTheMiddle": "Cantidad de lugares en el medio no válida"
 }

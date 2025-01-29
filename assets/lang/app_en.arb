@@ -14,6 +14,7 @@
   "enterYourFeedback": "Enter your feedback",
   "submit": "Submit",
   "cancel": "Cancel",
+  "edit": "Edit",
 
   "add": "Add",
   "addClassroomDetails": "Classroom details",
@@ -34,6 +35,7 @@
   "studentList": "Student list",
   "searchBarStudent": "Search student",
   "edit": "Edit",
+  "layoutExtra": "Extra settings",
 
   "rowbyrow": "Row by row",
   "ushape": "U-shape",
@@ -64,5 +66,11 @@
   "classroomNameRequired": "Classroom name is required",
   "classroomDesksRequired": "Total desks are required",
   "classroomDesksInvalid": "Total desks are invalid",
-  "classroomDesksLessThanStudentCount": "Total desks must be greater than the total amount of students"
+  "classroomDesksLessThanStudentCount": "Total desks must be greater than the total amount of students",
+  "amountOfRows": "Amount of rows",
+  "amountOfStudentsPerDesk": "Amount of students per desk",
+  "amountOfPlacesInTheMiddle": "Amount of places in the middle",
+  "invalidAmountOfRows": "Invalid amount of rows",
+  "invalidAmountOfStudentsPerDesk": "Invalid amount of students per desk",
+  "invalidAmountOfPlacesInTheMiddle": "Invalid amount of places in the middle"
 }

@@ -14,6 +14,7 @@
   "enterYourFeedback": "Geben Sie Ihr Feedback ein",
   "submit": "Einreichen",
   "cancel": "Stornieren",
+  "edit": "Bearbeiten",
 
   "add": "Hinzufügen",
   "addClassroomDetails": "Klassenzimmerdetails",
@@ -34,6 +35,7 @@
   "studentList": "Schülerliste",
   "searchBarStudent": "Schüler suchen",
   "edit": "Bearbeiten",
+  "layoutExtra": "Zusätzliche Einstellungen",
 
   "rowbyrow": "Reihe für Reihe",
   "ushape": "U-Form",
@@ -64,5 +66,11 @@
   "classroomNameRequired": "Klassenzimmername erforderlich",
   "classroomDesksRequired": "Gesamtzahl der Schreibtische erforderlich",
   "classroomDesksInvalid": "Ungültige Gesamtzahl der Schreibtische",
-  "classroomDesksLessThanStudentCount": "Die Gesamtzahl der Schreibtische muss größer sein als die Gesamtzahl der Schüler"
+  "classroomDesksLessThanStudentCount": "Die Gesamtzahl der Schreibtische muss größer sein als die Gesamtzahl der Schüler",
+  "amountOfRows": "Anzahl der Reihen",
+  "amountOfStudentsPerDesk": "Anzahl der Schüler pro Schreibtisch",
+  "amountOfPlacesInTheMiddle": "Anzahl der Plätze in der Mitte",
+  "invalidAmountOfRows": "Ungültige Anzahl der Reihen",
+  "invalidAmountOfStudentsPerDesk": "Ungültige Anzahl der Schüler pro Schreibtisch",
+  "invalidAmountOfPlacesInTheMiddle": "Ungültige Anzahl der Plätze in der Mitte"
 }

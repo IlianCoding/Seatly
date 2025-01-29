@@ -63,7 +63,9 @@ class ClassroomService implements IClassroomService{
 
   @override
   Future<void> removeStudentFromClassroom(Classroom classroom, String studentId) async {
-
+    classroom.removeStudent(studentId);
+    classroom.desks.forEach((desk) {desk.removeStudentUponDelete(studentId);});
+    await classroomRepository.updateClassroom(classroom);
   }
 
   @override

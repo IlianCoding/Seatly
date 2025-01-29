@@ -14,6 +14,7 @@
   "enterYourFeedback": "Entrez votre retour",
   "submit": "Soumettre",
   "cancel": "Annuler",
+  "edit": "Modifier",
 
   "add": "Ajouter",
   "addClassroomDetails": "Détails de la salle de classe",
@@ -44,6 +45,7 @@
   "studentList": "Liste des élèves",
   "searchBarStudent": "Rechercher un élève",
   "edit": "Modifier",
+  "layoutExtra": "Paramètres supplémentaires",
 
   "delete": "Supprimer",
   "deleteDialogTitleClassroom": "Supprimer salle de classe",
@@ -64,5 +66,11 @@
   "classroomNameRequired": "Le nom de la salle de classe est obligatoire",
   "classroomDesksRequired": "Le nombre total de bureaux est requis",
   "classroomDesksInvalid": "Le nombre total de bureaux n'est pas valide",
-  "classroomDesksLessThanStudentCount": "Le nombre total de bureaux doit être supérieur au nombre total d'élèves"
+  "classroomDesksLessThanStudentCount": "Le nombre total de bureaux doit être supérieur au nombre total d'élèves",
+  "amountOfRows": "Nombre de rangées",
+  "amountOfStudentsPerDesk": "Nombre d'élèves par bureau",
+  "amountOfPlacesInTheMiddle": "Nombre de places au milieu",
+  "invalidAmountOfRows": "Nombre de rangées invalide",
+  "invalidAmountOfStudentsPerDesk": "Nombre d'élèves par bureau invalide",
+  "invalidAmountOfPlacesInTheMiddle": "Nombre de places au milieu invalide"
 }
