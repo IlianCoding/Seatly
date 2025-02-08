@@ -150,6 +150,7 @@ class _ClassroomEditDialogState extends ConsumerState<ClassroomEditDialog> {
                 } else {
                   final succes = await viewModel.updateClassroom();
                   if (succes) {
+                    ref.read(classroomHomepageViewModel.notifier).refresh();
                     Navigator.pop(context);
                   }
                 }

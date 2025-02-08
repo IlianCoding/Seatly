@@ -10,12 +10,16 @@ class ClassroomHomepageViewModel extends StateNotifier<AsyncValue<List<Classroom
     loadClassrooms();
   }
 
-  Future<void> loadClassrooms() async {
+  Future<List<Classroom>> loadClassrooms() async {
+    state = const AsyncLoading();
+
     try {
       final classrooms = await classroomService.getAllClassrooms();
       state = AsyncData(classrooms);
+      return classrooms;
     } catch (e) {
       state = AsyncError(e, StackTrace.current);
+      return [];
     }
   }
 
@@ -26,6 +30,17 @@ class ClassroomHomepageViewModel extends StateNotifier<AsyncValue<List<Classroom
       state = AsyncData(classrooms);
     } catch (e) {
       state = AsyncError(e, StackTrace.current);
+    }
+  }
+
+  Future<void> refresh() async {
+    state = const AsyncLoading();
+
+    try {
+      final updatedClassrooms = await loadClassrooms();
+      state = AsyncData(updatedClassrooms);
+    } catch (error, stackTrace) {
+      state = AsyncError(error, stackTrace);
     }
   }
 }

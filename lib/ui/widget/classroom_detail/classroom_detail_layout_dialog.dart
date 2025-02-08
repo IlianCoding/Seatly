@@ -168,6 +168,7 @@ class LayoutParametersDialog extends ConsumerWidget {
 
                 final success = await viewModel.updateClassroom();
                 if (success) {
+                  ref.read(classroomHomepageViewModel.notifier).refresh();
                   Navigator.pop(context);
                 }
               },
