@@ -21,7 +21,6 @@ class LayoutParametersDialog extends ConsumerWidget {
         final rowsController = TextEditingController();
         final desksPerGroupController = TextEditingController();
         final middleDesksController = TextEditingController();
-        final middleRowsController = TextEditingController();
 
         Widget? layoutSpecificField;
         final layoutType = classroomDetails.classroom?.layoutType;
@@ -85,7 +84,7 @@ class LayoutParametersDialog extends ConsumerWidget {
                 ),
                 const SizedBox(height: 10),
                 TextFormField(
-                  controller: middleRowsController,
+                  controller: rowsController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                       labelText: AppLocalizations.of(context)!.amountOfRows,
@@ -164,6 +163,7 @@ class LayoutParametersDialog extends ConsumerWidget {
                   totalMiddleDesks: middleDesksController.text.isEmpty
                       ? null
                       : int.parse(middleDesksController.text),
+
                 ));
 
                 final success = await viewModel.updateClassroom();
