@@ -14,20 +14,47 @@ class DifferentSortingOptionsRepository implements IDifferentSortingOptionsRepos
   }) : _jsonWriteRead = jsonWriteRead;
 
   @override
-  Future<DifferentSortingOptions?> readDifferentSortingOptions() {
-    // TODO: implement readDifferentSortingOptions
-    throw UnimplementedError();
+  Future<DifferentSortingOptions?> readDifferentSortingOptions() async {
+    final file = await _jsonWriteRead.getFile(fileName);
+    final data = await _jsonWriteRead.readDataFromFile(file);
+    final differentSortingOptions = _parseDifferentSortingOptions(data);
+
+    return differentSortingOptions.firstOrNull;
   }
 
   @override
-  Future<void> updateDifferentSortingOptions(DifferentSortingOptions differentSortingOptions) {
-    // TODO: implement updateDifferentSortingOptions
-    throw UnimplementedError();
+  Future<void> updateDifferentSortingOptions(DifferentSortingOptions differentSortingOptions) async {
+    final file = await _jsonWriteRead.getFile(fileName);
+    final data = await _jsonWriteRead.readDataFromFile(file);
+
+    if (!data.containsKey('differentSortingOptions') ||
+        data['differentSortingOptions'] is! List) {
+      data['differentSortingOptions'] = [];
+    }
+
+    data['differentSortingOptions'] = [differentSortingOptions.toJson()];
+    await _jsonWriteRead.writeDataToFile(file, data);
   }
 
   @override
-  Future<void> initializeDifferentSortingOptions() {
-    // TODO: implement initializeDifferentSortingOptions
-    throw UnimplementedError();
+  Future<void> initializeDifferentSortingOptions(DifferentSortingOptions differentSortingOptions) async {
+    final file = await _jsonWriteRead.getFile(fileName);
+    final data = await _jsonWriteRead.readDataFromFile(file);
+
+    if (!data.containsKey('differentSortingOptions') ||
+        data['differentSortingOptions'] is! List) {
+      data['differentSortingOptions'] = [];
+    }
+
+    data['differentSortingOptions'].add(differentSortingOptions.toJson());
+    await _jsonWriteRead.writeDataToFile(file, data);
+  }
+
+  List<DifferentSortingOptions> _parseDifferentSortingOptions(Map<String, dynamic> data) {
+    final differentSortingOptionsJson = data['differentSortingOptions'] as List<dynamic>?;
+    if(differentSortingOptionsJson == null) {
+      return [];
+    }
+    return differentSortingOptionsJson.map((e) => DifferentSortingOptions.fromJson(e as Map<String, dynamic>)).toList();
   }
 }

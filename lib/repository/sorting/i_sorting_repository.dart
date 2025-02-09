@@ -5,5 +5,5 @@ abstract class IDifferentSortingOptionsRepository{
 
   Future<void> updateDifferentSortingOptions(DifferentSortingOptions differentSortingOptions);
 
-  Future<void> initializeDifferentSortingOptions();
+  Future<void> initializeDifferentSortingOptions(DifferentSortingOptions differentSortingOptions);
 }
