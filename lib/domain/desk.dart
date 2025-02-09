@@ -11,12 +11,14 @@ class Desk {
   Position? position;
   String? assignedStudentId;
   String? previousStudentId;
+  bool isLocked;
 
   Desk({
     required this.id,
     this.position,
     this.assignedStudentId,
     this.previousStudentId,
+    this.isLocked = false,
   });
 
   bool get isAvailable => assignedStudentId == null;
@@ -29,6 +31,14 @@ class Desk {
   void clearAssignment() {
     previousStudentId = assignedStudentId;
     assignedStudentId = null;
+  }
+
+  void lockDesk() {
+    isLocked = true;
+  }
+
+  void unlockDesk() {
+    isLocked = false;
   }
 
   void removeStudentUponDelete(String studentId) {

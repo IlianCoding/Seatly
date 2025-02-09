@@ -1,4 +1,10 @@
 import 'package:get_it/get_it.dart';
+import 'package:seatly/domain/configuration/layoutStrategy/grouped_layout_strategy.dart';
+import 'package:seatly/domain/configuration/layoutStrategy/layout_strategy.dart';
+import 'package:seatly/domain/configuration/layoutStrategy/row_by_row_layout_strategy.dart';
+import 'package:seatly/domain/configuration/layoutStrategy/special_ushape_layout_strategy.dart';
+import 'package:seatly/repository/sorting/i_sorting_repository.dart';
+import 'package:seatly/repository/sorting/sorting_repository.dart';
 
 import 'package:seatly/repository/student/i_student_repository.dart';
 import 'package:seatly/repository/student/student_repository.dart';
@@ -17,12 +23,26 @@ Future<void> configureDependencies() async {
   // Register JsonWriteRead
   getIt.registerLazySingleton(() => JsonWriteRead());
 
+  // Register Layout Strategies for the algorithms
+  getIt.registerLazySingleton<ILayoutStrategy>(
+          () => RowByRowLayoutStrategy()
+  );
+  getIt.registerLazySingleton<ILayoutStrategy>(
+          () => GroupedLayoutStrategy()
+  );
+  getIt.registerLazySingleton<ILayoutStrategy>(
+          () => SpecialUShapeLayoutStrategy()
+  );
+
   // Register Repositories
   getIt.registerLazySingleton<IClassroomRepository>(
         () => ClassroomRepository(jsonWriteRead: getIt<JsonWriteRead>()),
   );
   getIt.registerLazySingleton<IStudentRepository>(
         () => StudentRepository(jsonWriteRead: getIt<JsonWriteRead>()),
+  );
+  getIt.registerLazySingleton<IDifferentSortingOptionsRepository>(
+        () => DifferentSortingOptionsRepository(jsonWriteRead: getIt<JsonWriteRead>()),
   );
 
   // Register Services

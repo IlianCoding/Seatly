@@ -4,10 +4,11 @@ import 'package:seatly/domain/classroom.dart';
 import 'package:seatly/domain/configuration/layoutStrategy/layout_strategy.dart';
 
 @Singleton(as : ILayoutStrategy)
-class RowByRowLayoutStrategy implements ILayoutStrategy {
+class SpecialUShapeLayoutStrategy implements ILayoutStrategy {
   @override
   bool assignStudents(Classroom classroom) {
     // TODO: implement assignStudents
     throw UnimplementedError();
   }
+
 }

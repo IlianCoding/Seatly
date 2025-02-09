@@ -8,13 +8,14 @@ part 'different_sorting_options.g.dart';
 class DifferentSortingOptions {
   @JsonKey()
   final List<SortingOption> selectedOptions;
+  final bool firstTime;
 
   DifferentSortingOptions({List<SortingOption>? selectedOptions})
       : selectedOptions = selectedOptions ?? [
     SortingOption.avoidSameNationality,
     SortingOption.avoidAdjacentRepetition,
     SortingOption.avoidSamePlaceRepetition,
-  ];
+  ], firstTime = true;
 
   factory DifferentSortingOptions.fromJson(Map<String, dynamic> json) =>
       _$DifferentSortingOptionsFromJson(json);
