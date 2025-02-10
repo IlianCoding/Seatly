@@ -11,20 +11,33 @@ class DifferentSortingOptionsService implements IDifferentSortingOptionsService 
   DifferentSortingOptionsService(this._differentSortingOptionsRepository);
 
   @override
-  Future<void> changeDifferentSortingOptions(DifferentSortingOptions differentSortingOptions) {
-    // TODO: implement changeDifferentSortingOptions
-    throw UnimplementedError();
+  Future<void> changeDifferentSortingOptions(DifferentSortingOptions differentSortingOptions) async {
+    try {
+      await _differentSortingOptionsRepository.updateDifferentSortingOptions(differentSortingOptions);
+    } catch (e) {
+      throw Exception('Error updating different sorting options: $e');
+    }
   }
 
   @override
-  Future<DifferentSortingOptions?> getDifferentSortingOptions() {
-    // TODO: implement getDifferentSortingOptions
-    throw UnimplementedError();
+  Future<DifferentSortingOptions?> getDifferentSortingOptions() async {
+    try {
+      return await _differentSortingOptionsRepository.readDifferentSortingOptions();
+    } catch (e) {
+      throw Exception('Error reading different sorting options: $e');
+    }
   }
 
   @override
-  Future<void> initializeDifferentSortingOptions(DifferentSortingOptions differentSortingOptions) {
-    // TODO: implement initializeDifferentSortingOptions
-    throw UnimplementedError();
+  Future<void> initializeDifferentSortingOptions(DifferentSortingOptions differentSortingOptions) async {
+    try {
+      DifferentSortingOptions? existingOptions = await _differentSortingOptionsRepository.readDifferentSortingOptions();
+
+      if (existingOptions == null) {
+        await _differentSortingOptionsRepository.initializeDifferentSortingOptions(differentSortingOptions);
+      }
+    } catch (e) {
+      throw Exception('Error initializing different sorting options: $e');
+    }
   }
 }
