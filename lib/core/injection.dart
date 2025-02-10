@@ -12,6 +12,8 @@ import 'package:seatly/repository/classroom/i_classroom_repository.dart';
 import 'package:seatly/repository/classroom/classroom_repository.dart';
 import 'package:seatly/service/classroom/classroom_service.dart';
 import 'package:seatly/service/classroom/i_classroom_service.dart';
+import 'package:seatly/service/sorting/i_sorting_service.dart';
+import 'package:seatly/service/sorting/sorting_service.dart';
 import 'package:seatly/service/student/i_student_service.dart';
 import 'package:seatly/service/student/student_service.dart';
 
@@ -25,13 +27,16 @@ Future<void> configureDependencies() async {
 
   // Register Layout Strategies for the algorithms
   getIt.registerLazySingleton<ILayoutStrategy>(
-          () => RowByRowLayoutStrategy()
+          () => RowByRowLayoutStrategy(),
+          instanceName: 'RowByRowLayoutStrategy'
   );
   getIt.registerLazySingleton<ILayoutStrategy>(
-          () => GroupedLayoutStrategy()
+          () => GroupedLayoutStrategy(),
+          instanceName: 'GroupedLayoutStrategy'
   );
   getIt.registerLazySingleton<ILayoutStrategy>(
-          () => SpecialUShapeLayoutStrategy()
+          () => SpecialUShapeLayoutStrategy(),
+          instanceName: 'SpecialUShapeLayoutStrategy'
   );
 
   // Register Repositories
@@ -55,6 +60,11 @@ Future<void> configureDependencies() async {
   getIt.registerLazySingleton<IStudentService>(
         () => StudentService(
             studentRepository: getIt<IStudentRepository>()
+        )
+  );
+  getIt.registerLazySingleton<IDifferentSortingOptionsService>(
+        () => DifferentSortingOptionsService(
+            differentSortingOptionsRepository: getIt<IDifferentSortingOptionsRepository>()
         )
   );
 }

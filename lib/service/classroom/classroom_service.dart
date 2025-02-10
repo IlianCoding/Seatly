@@ -64,7 +64,7 @@ class ClassroomService implements IClassroomService{
   @override
   Future<void> removeStudentFromClassroom(Classroom classroom, String studentId) async {
     classroom.removeStudent(studentId);
-    classroom.desks.forEach((desk) {desk.removeStudentUponDelete(studentId);});
+    for (var desk in classroom.desks) {desk.removeStudentUponDelete(studentId);}
     await classroomRepository.updateClassroom(classroom);
   }
 
@@ -87,8 +87,12 @@ class ClassroomService implements IClassroomService{
 
   @override
   Future<void> initializeData() async {
-    await studentRepository.initializeStudents();
-    await classroomRepository.initializeClassrooms();
+    try {
+      await studentRepository.initializeStudents();
+      await classroomRepository.initializeClassrooms();
+    } catch (e) {
+      throw Exception('Failed to initialize data: $e');
+    }
   }
 
   Future<String> generateUniqueId() async {

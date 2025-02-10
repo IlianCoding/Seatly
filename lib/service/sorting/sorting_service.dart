@@ -6,14 +6,14 @@ import 'package:seatly/service/sorting/i_sorting_service.dart';
 
 @Singleton(as : IDifferentSortingOptionsService)
 class DifferentSortingOptionsService implements IDifferentSortingOptionsService {
-  final IDifferentSortingOptionsRepository _differentSortingOptionsRepository;
+  final IDifferentSortingOptionsRepository differentSortingOptionsRepository;
 
-  DifferentSortingOptionsService(this._differentSortingOptionsRepository);
+  DifferentSortingOptionsService({required this.differentSortingOptionsRepository});
 
   @override
   Future<void> changeDifferentSortingOptions(DifferentSortingOptions differentSortingOptions) async {
     try {
-      await _differentSortingOptionsRepository.updateDifferentSortingOptions(differentSortingOptions);
+      await differentSortingOptionsRepository.updateDifferentSortingOptions(differentSortingOptions);
     } catch (e) {
       throw Exception('Error updating different sorting options: $e');
     }
@@ -22,7 +22,7 @@ class DifferentSortingOptionsService implements IDifferentSortingOptionsService 
   @override
   Future<DifferentSortingOptions?> getDifferentSortingOptions() async {
     try {
-      return await _differentSortingOptionsRepository.readDifferentSortingOptions();
+      return await differentSortingOptionsRepository.readDifferentSortingOptions();
     } catch (e) {
       throw Exception('Error reading different sorting options: $e');
     }
@@ -31,10 +31,10 @@ class DifferentSortingOptionsService implements IDifferentSortingOptionsService 
   @override
   Future<void> initializeDifferentSortingOptions(DifferentSortingOptions differentSortingOptions) async {
     try {
-      DifferentSortingOptions? existingOptions = await _differentSortingOptionsRepository.readDifferentSortingOptions();
+      DifferentSortingOptions? existingOptions = await differentSortingOptionsRepository.readDifferentSortingOptions();
 
       if (existingOptions == null) {
-        await _differentSortingOptionsRepository.initializeDifferentSortingOptions(differentSortingOptions);
+        await differentSortingOptionsRepository.initializeDifferentSortingOptions(differentSortingOptions);
       }
     } catch (e) {
       throw Exception('Error initializing different sorting options: $e');

@@ -12,9 +12,9 @@ import 'package:seatly/ui/screen/settings_screens/settings_screen.dart';
 import 'package:seatly/ui/screen/splash_screen.dart';
 import 'package:seatly/service/classroom/i_classroom_service.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  configureDependencies();
+  await configureDependencies();
   IClassroomService classroomService = getIt<IClassroomService>();
   classroomService.initializeData();
   runApp(
