@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:seatly/ui/widget/classroom_detail/classroom_detail_edit_dialog.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
-import 'package:seatly/ui/widget/classroom_detail/classroom_detail_student_card.dart';
+import 'package:seatly/ui/widget/classroom_detail/detail_view/classroom_detail_edit_dialog.dart';
+import 'package:seatly/ui/widget/classroom_detail/detail_view/classroom_detail_student_card.dart';
 import 'package:seatly/domain/configuration/layoutType/layout_type.dart';
 import 'package:seatly/ui/widget/info/info_description_coachmark.dart';
 import 'package:seatly/ui/providers/viewmodel_providers.dart';
-import 'package:seatly/ui/widget/classroom_detail/classroom_detail_general_info_card.dart';
+import 'package:seatly/ui/widget/classroom_detail/detail_view/classroom_detail_general_info_card.dart';
 import 'package:seatly/ui/widget/delete_confirmation_dialog.dart';
 
 final searchStudentQueryProvider = StateProvider<String>((ref) => '');

@@ -34,7 +34,6 @@
   "seatStudentsDescription": "Seat students in the classroom",
   "studentList": "Student list",
   "searchBarStudent": "Search student",
-  "edit": "Edit",
   "layoutExtra": "Extra settings",
 
   "rowbyrow": "Row by row",
@@ -72,5 +71,6 @@
   "amountOfPlacesInTheMiddle": "Amount of places in the middle",
   "invalidAmountOfRows": "Invalid amount of rows",
   "invalidAmountOfStudentsPerDesk": "Invalid amount of students per desk",
-  "invalidAmountOfPlacesInTheMiddle": "Invalid amount of places in the middle"
+  "invalidAmountOfPlacesInTheMiddle": "Invalid amount of places in the middle",
+  "classroomLayoutNotFound": "Classroom layout not found"
 }

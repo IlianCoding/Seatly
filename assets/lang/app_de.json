@@ -34,7 +34,6 @@
   "seatStudentsDescription": "Platzieren Sie Schüler im Klassenzimmer",
   "studentList": "Schülerliste",
   "searchBarStudent": "Schüler suchen",
-  "edit": "Bearbeiten",
   "layoutExtra": "Zusätzliche Einstellungen",
 
   "rowbyrow": "Reihe für Reihe",
@@ -72,5 +71,6 @@
   "amountOfPlacesInTheMiddle": "Anzahl der Plätze in der Mitte",
   "invalidAmountOfRows": "Ungültige Anzahl der Reihen",
   "invalidAmountOfStudentsPerDesk": "Ungültige Anzahl der Schüler pro Schreibtisch",
-  "invalidAmountOfPlacesInTheMiddle": "Ungültige Anzahl der Plätze in der Mitte"
+  "invalidAmountOfPlacesInTheMiddle": "Ungültige Anzahl der Plätze in der Mitte",
+  "classroomLayoutNotFound": "Klassenzimmerlayout nicht gefunden"
 }

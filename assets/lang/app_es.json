@@ -34,7 +34,6 @@
   "seatStudentsDescription": "Ubique a los estudiantes en el aula",
   "studentList": "Lista de estudiantes",
   "searchBarStudent": "Buscar estudiante",
-  "edit": "Editar",
   "layoutExtra": "Configuraciones adicionales",
 
   "rowbyrow": "Fila por fila",
@@ -72,5 +71,6 @@
   "amountOfPlacesInTheMiddle": "Cantidad de lugares en el medio",
   "invalidAmountOfRows": "Cantidad de filas no válida",
   "invalidAmountOfStudentsPerDesk": "Cantidad de estudiantes por escritorio no válida",
-  "invalidAmountOfPlacesInTheMiddle": "Cantidad de lugares en el medio no válida"
+  "invalidAmountOfPlacesInTheMiddle": "Cantidad de lugares en el medio no válida",
+  "classroomLayoutNotFound": "No se encontró el diseño del aula"
 }

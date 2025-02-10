@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:seatly/domain/configuration/layoutType/layout_type.dart';
 import 'package:seatly/ui/providers/viewmodel_providers.dart';
-import 'package:seatly/ui/widget/classroom_detail/classroom_detail_layout_dialog.dart';
+import 'package:seatly/ui/widget/classroom_detail/detail_view/classroom_detail_layout_dialog.dart';
 
 class ClassroomEditDialog extends ConsumerStatefulWidget {
   final String classroomId;

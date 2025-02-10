@@ -44,7 +44,6 @@
   "seatStudentsDescription": "Placez les élèves dans la salle de classe",
   "studentList": "Liste des élèves",
   "searchBarStudent": "Rechercher un élève",
-  "edit": "Modifier",
   "layoutExtra": "Paramètres supplémentaires",
 
   "delete": "Supprimer",
@@ -72,5 +71,6 @@
   "amountOfPlacesInTheMiddle": "Nombre de places au milieu",
   "invalidAmountOfRows": "Nombre de rangées invalide",
   "invalidAmountOfStudentsPerDesk": "Nombre d'élèves par bureau invalide",
-  "invalidAmountOfPlacesInTheMiddle": "Nombre de places au milieu invalide"
+  "invalidAmountOfPlacesInTheMiddle": "Nombre de places au milieu invalide",
+  "classroomLayoutNotFilled": "Veuillez remplir le type de disposition de la salle de classe"
 }
