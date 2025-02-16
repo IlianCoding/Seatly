@@ -35,12 +35,10 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
     searchController.addListener(() {
       ref.read(searchQueryProvider.notifier).state = searchController.text;
     });
-  }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    ref.read(classroomHomepageViewModel.notifier).loadClassrooms();
+    Future.microtask(() {
+      ref.read(classroomHomepageViewModel.notifier).loadClassrooms();
+    });
   }
 
   @override

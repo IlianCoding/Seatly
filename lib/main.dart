@@ -40,18 +40,18 @@ class MyApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       navigatorKey: navigatorKey,
       locale: locale,
-      localizationsDelegates: const [
+      localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
       supportedLocales: const [
-        Locale('en', ''),
-        Locale('nl', ''),
-        Locale('fr', ''),
-        Locale('de', ''),
-        Locale('es', '')
+        Locale('en'),
+        Locale('nl'),
+        Locale('fr'),
+        Locale('de'),
+        Locale('es')
       ],
       theme: ThemeData(
         textTheme: TextTheme(displayMedium: TextStyle(fontSize: fontSize)),
