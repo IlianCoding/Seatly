@@ -15,6 +15,10 @@
   "submit": "Enviar",
   "cancel": "Cancelar",
   "edit": "Editar",
+  "empty": "Vacío",
+  "yes": "Sí",
+  "no": "No",
+  "close": "Cerrar",
 
   "add": "Agregar",
   "addClassroomDetails": "Detalles del aula",

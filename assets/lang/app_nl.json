@@ -15,6 +15,10 @@
   "submit": "Verzenden",
   "cancel": "Annuleren",
   "edit": "Bewerken",
+  "empty": "Leeg",
+  "yes": "Ja",
+  "no": "Nee",
+  "close": "Sluiten",
 
   "add": "Toevoegen",
   "addClassroomDetails": "Klaslokaal details",

@@ -15,6 +15,10 @@
   "submit": "Soumettre",
   "cancel": "Annuler",
   "edit": "Modifier",
+  "empty": "Vide",
+  "yes": "Oui",
+  "no": "Non",
+  "close": "Fermer",
 
   "add": "Ajouter",
   "addClassroomDetails": "Détails de la salle de classe",

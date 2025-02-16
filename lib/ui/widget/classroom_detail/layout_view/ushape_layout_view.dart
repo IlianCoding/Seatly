@@ -11,5 +11,6 @@ class UShapeLayoutWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    return Text(AppLocalizations.of(context)!.theme);
   }
 }

@@ -15,6 +15,10 @@
   "submit": "Submit",
   "cancel": "Cancel",
   "edit": "Edit",
+  "empty": "Empty",
+  "yes": "Yes",
+  "no": "No",
+  "close": "Close",
 
   "add": "Add",
   "addClassroomDetails": "Classroom details",
