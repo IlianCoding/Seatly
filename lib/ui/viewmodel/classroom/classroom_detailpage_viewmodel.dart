@@ -7,11 +7,8 @@ import 'package:seatly/ui/model/classroom_detail_model.dart';
 class ClassroomDetailPageViewModel extends StateNotifier<AsyncValue<ClassroomDetailsModel>> {
   final IClassroomService classroomService;
   final IStudentService studentService;
-  final String classroomId;
 
-  ClassroomDetailPageViewModel(this.classroomService, this.studentService, this.classroomId) : super(const AsyncValue.loading()) {
-    loadClassroomDetails(classroomId);
-  }
+  ClassroomDetailPageViewModel(this.classroomService, this.studentService) : super(const AsyncValue.loading());
 
   Future<void> loadClassroomDetails(String classroomId) async {
     try {

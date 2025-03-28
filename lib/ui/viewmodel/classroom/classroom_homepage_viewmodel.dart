@@ -6,9 +6,7 @@ import 'package:seatly/service/classroom/i_classroom_service.dart';
 class ClassroomHomepageViewModel extends StateNotifier<AsyncValue<List<Classroom>>> {
   final IClassroomService classroomService;
 
-  ClassroomHomepageViewModel(this.classroomService) : super(const AsyncLoading()) {
-    loadClassrooms();
-  }
+  ClassroomHomepageViewModel(this.classroomService) : super(const AsyncLoading());
 
   Future<List<Classroom>> loadClassrooms() async {
     state = const AsyncLoading();
